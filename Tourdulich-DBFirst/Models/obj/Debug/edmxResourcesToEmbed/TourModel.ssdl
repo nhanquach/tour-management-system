@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyTourModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChiTietDoan">
+    <Key>
+      <PropertyRef Name="Ma_CTDoan" />
+    </Key>
+    <Property Name="Ma_CTDoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="MaDoan" Type="int" />
+  </EntityType>
+  <EntityType Name="ChiTietTour">
+    <Key>
+      <PropertyRef Name="MaCTTour" />
+    </Key>
+    <Property Name="MaCTTour" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaTour" Type="int" Nullable="false" />
+    <Property Name="MaDiaDiem" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiaDiem">
+    <Key>
+      <PropertyRef Name="MaDiaDiem" />
+    </Key>
+    <Property Name="MaDiaDiem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDiaDiem" Type="nvarchar" MaxLength="100" />
+    <Property Name="ThongTinDD" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tinh" Type="nvarchar" MaxLength="100" />
+    <Property Name="Nuoc" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Doan">
+    <Key>
+      <PropertyRef Name="MaDoan" />
+    </Key>
+    <Property Name="MaDoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDoan" Type="nvarchar" MaxLength="250" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="250" />
+    <Property Name="NgayDi" Type="date" />
+    <Property Name="NgayKT" Type="date" />
+    <Property Name="MaTour" Type="int" />
+    <Property Name="TinhTrang" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="250" />
+    <Property Name="CMND" Type="nvarchar" MaxLength="20" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="SoDT" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="QuaTrinhTour">
+    <Key>
+      <PropertyRef Name="Ma" />
+    </Key>
+    <Property Name="Ma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="TenTour" Type="nvarchar" MaxLength="100" />
+    <Property Name="ThongTinTour" Type="nvarchar" MaxLength="255" />
+    <Property Name="GiaTour" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NgayDi" Type="date" />
+    <Property Name="NgayKT" Type="date" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="MaTour" />
+    </Key>
+    <Property Name="MaTour" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTour" Type="nvarchar" MaxLength="100" />
+    <Property Name="ThongTinTour" Type="nvarchar" MaxLength="255" />
+    <Property Name="GiaTour" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_ChiTietDoan_Doan">
+    <End Role="Doan" Type="Self.Doan" Multiplicity="0..1" />
+    <End Role="ChiTietDoan" Type="Self.ChiTietDoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doan">
+        <PropertyRef Name="MaDoan" />
+      </Principal>
+      <Dependent Role="ChiTietDoan">
+        <PropertyRef Name="MaDoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDoan_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="ChiTietDoan" Type="Self.ChiTietDoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="ChiTietDoan">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietTour_DiaDiem">
+    <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="1" />
+    <End Role="ChiTietTour" Type="Self.ChiTietTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiaDiem">
+        <PropertyRef Name="MaDiaDiem" />
+      </Principal>
+      <Dependent Role="ChiTietTour">
+        <PropertyRef Name="MaDiaDiem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietTour_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="ChiTietTour" Type="Self.ChiTietTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="MaTour" />
+      </Principal>
+      <Dependent Role="ChiTietTour">
+        <PropertyRef Name="MaTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doan_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="Doan" Type="Self.Doan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="MaTour" />
+      </Principal>
+      <Dependent Role="Doan">
+        <PropertyRef Name="MaTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuaTrinhTour_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="QuaTrinhTour" Type="Self.QuaTrinhTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="QuaTrinhTour">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyTourModelStoreContainer">
+    <EntitySet Name="ChiTietDoan" EntityType="Self.ChiTietDoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietTour" EntityType="Self.ChiTietTour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DiaDiem" EntityType="Self.DiaDiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doan" EntityType="Self.Doan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuaTrinhTour" EntityType="Self.QuaTrinhTour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChiTietDoan_Doan" Association="Self.FK_ChiTietDoan_Doan">
+      <End Role="Doan" EntitySet="Doan" />
+      <End Role="ChiTietDoan" EntitySet="ChiTietDoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDoan_KhachHang" Association="Self.FK_ChiTietDoan_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="ChiTietDoan" EntitySet="ChiTietDoan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietTour_DiaDiem" Association="Self.FK_ChiTietTour_DiaDiem">
+      <End Role="DiaDiem" EntitySet="DiaDiem" />
+      <End Role="ChiTietTour" EntitySet="ChiTietTour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietTour_Tour" Association="Self.FK_ChiTietTour_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="ChiTietTour" EntitySet="ChiTietTour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doan_Tour" Association="Self.FK_Doan_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="Doan" EntitySet="Doan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuaTrinhTour_KhachHang" Association="Self.FK_QuaTrinhTour_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="QuaTrinhTour" EntitySet="QuaTrinhTour" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

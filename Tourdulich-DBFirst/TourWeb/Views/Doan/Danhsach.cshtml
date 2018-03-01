@@ -1,0 +1,152 @@
+﻿@model PagedList.IPagedList<Models.Doan>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách đoàn khách";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var kh = TempData["KH"] as IEnumerable<Models.KhachHang>;
+    string hidden = "disabled";
+}
+<div class="modal fade modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Chọn khách hàng cho tour - @TempData["TenTour"]</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table>
+                        <tr><td><input type="text" value="@ViewBag.SearchString" placeholder="Nhập họ tên vào đây để tìm" class="form-control" name="searchString" style="width:100%" id="txtSearch" onkeyup="Search()"></td></tr>
+                        <tr>
+                            <td>
+                                <div id="divPartialView">
+                                    @Html.Partial("~/Views/Doan/DSKhach.cshtml", kh)
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnChon">Chọn</button>
+            </div>
+        </div>
+    </div>
+</div>
+<h1>Danh sách đoàn @if (TempData["TenTour"] != null)
+{@("của " + TempData["TenTour"])}</h1>
+<a href="@Url.Action("Them", "Doan", new { MaTour = TempData["MaTour"]})" title="Thêm đoàn mới" class="btn btn-success">Thêm đoàn mới</a>
+@using (Html.BeginForm("Danhsach", "Doan", FormMethod.Get))
+{<br />
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" style="width:100%" placeholder="Nhập tên đoàn">
+            </div>
+            <div class="col-md-4">
+                <button id="btnSearch" class="btn btn-success">Tìm</button>
+            </div>
+
+        </div>
+    </div>
+}
+<br />
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Tên đoàn</th>
+                <th>Nội dung</th>
+                <th>Ngày đi</th>
+                <th>Ngày kết thúc</th>
+                @if (TempData["MaTour"] == null)
+                {
+                <th>Tên tour</th>}
+                <th>Tình trạng</th>
+                <th>Xem khách hàng</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="row_@item.MaTour">
+                    <td>@item.TenDoan <input type="hidden" id="maTour" value="@item.MaTour" /></td>
+                    <td>@item.NoiDung</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgayDi, "{0:dd-MM-yyyy}")</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgayKT, "{0:dd-MM-yyyy}")</td>
+                    @if (TempData["MaTour"] == null)
+                    {
+                        var tentour = new Models.DAO.TourDAO().TenTour(item.MaTour);
+                        <td>@tentour</td>
+                    }
+                    <td>@item.TinhTrang</td>
+                    <td><a href="@Url.Action("Danhsach", "KhachHang", new { MaDoan = item.MaDoan})" title="Xem danh sách" class="btn-images btn btn btn-default">Xem</a></td>
+                    <td>
+                        @if (TempData["TenTour"] != null)
+                        {<button type="button" class="btn btn-default btn-chon" data-toggle="modal" data-target="#myModal" data-id="@item.MaDoan" @if (item.TinhTrang == "Kết thúc") { @hidden }>Chọn</button> @("| ") }<a href="@Url.Action("Sua", "Doan", new { MaDoan = item.MaDoan})" title="Sửa đoàn" class="btn-images btn btn btn-default" @if (item.TinhTrang == "Huỷ" || item.TinhTrang == "Kết thúc") { @hidden  }>Sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Danhsach", "Doan", new { page, @searchString = @ViewBag.SearchString }))
+<script type="text/javascript">
+    $('input[name^="Makh"]').each(function () {
+        var val = $(this).val();
+        $('input:checkbox[value="' + val + '"]').prop('checked', false);
+    });
+    function Search() {
+        var searchVal = $("#txtSearch").val();
+        $.ajax({
+            type: "POST",
+            url: '/Doan/DSKhach1', 
+            data: { searchString: searchVal }, 
+            dataType: 'html',
+            success: function (data) {
+                $('#divPartialView').html(data); 
+            }
+        });
+    }
+    var madoan;
+    $('.btn-chon').off('click').on('click', function () {
+        madoan = $(this).data('id');
+    });
+    $('#btnChon').off('click').on('click', function () {
+        var matour = $("#maTour").val();
+        var arrayid = [];
+        $("input:checked").each(function () {
+            arrayid.push($(this).val());
+        });
+        $.ajax({
+            url: '/Doan/ThemKH_Doan',
+            type: 'POST',
+            data: {
+                arrayid: JSON.stringify(arrayid),
+                madoan: madoan,
+                matour: matour
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == -1) {
+                    alert("Tình trạng đoàn này đang đi. Vui lòng chọn đoàn khác.");
+                }
+                if (response.status == 0) {
+                    alert("Đã có khách hàng trong đoàn. Vui lòng chọn đoàn khác.");
+                }
+                if (response.status == 1) {
+                    alert("Đã có sự trùng thời gian của đoàn . Vui lòng chọn đoàn khác.");
+                }
+                if (response.status == 2) {
+                    alert("Thêm thành công.");
+                }
+                $('#myModal').modal('hide');
+            }
+        });
+    });
+</script>
+
+
+

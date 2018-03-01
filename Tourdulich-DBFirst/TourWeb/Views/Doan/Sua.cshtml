@@ -1,0 +1,97 @@
+﻿@model Models.Doan
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listkh = ViewBag.ListKH_Doan as List<Models.KhachHang>;
+}
+<h2>Sửa đoàn - @Model.TenDoan</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<h3>Thông tin khách hàng trong đoàn</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>CMND</th>
+                <th>Địa chỉ</th>
+                <th>Giới tính</th>
+                <th>Số điện thoại</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 0;}
+            @foreach (var item in listkh)
+            {
+                i = i + 1;
+                <tr>
+                    <td>@i</td>
+                    <td>@item.TenKH</td>
+                    <td>@item.CMND</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.GioiTinh</td>
+                    <td>@item.SoDT</td>
+                    <td><a href="@Url.Action("XoaKH_Doan", "Doan", new { MaKH = item.MaKH, MaDoan = Model.MaDoan })" title="Xóa khách hàng" class="btn-images btn btn btn-default" onclick="return confirm('Bạn có chắc muốn tiếp tục?')">Xóa</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<h3>Sửa thông tin đoàn</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MaTour)
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenDoan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TenDoan, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TenDoan)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NoiDung)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayDi, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="ngaydi" value="@String.Format("{0:yyyy-MM-dd}", Model.NgayDi)" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayKT, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="ngaykt" value="@String.Format("{0:yyyy-MM-dd}", Model.NgayKT)" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TinhTrang, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TinhTrang", new List<SelectListItem>{
+        new SelectListItem{ Text="Chờ", Value="Chờ"},
+        new SelectListItem{ Text="Đang đi", Value="Đang đi"},
+        new SelectListItem{ Text="Kết thúc", Value="Kết thúc"},
+        }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TinhTrang)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="btnSua" value="Sửa" class="btn btn-default" onclick="return confirm('Bạn có chắc muốn tiếp tục?')" />
+            </div>
+        </div>
+    </div>
+}

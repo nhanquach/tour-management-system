@@ -1,0 +1,84 @@
+﻿@model List<Models.QuaTrinhTour>
+@{
+    ViewBag.Title = "QuaTrinh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Quá trình đi tour của @TempData["TenKH"]</h2>
+@using (Html.BeginForm("QuaTrinh", "KhachHang", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label" style="float:left;padding-left:350px;">Từ</label>
+                <div class="col-lg-2">
+                    <input type="date" id="ngay_di" name="ngay_di" class="form-control" />
+                </div>
+
+                <label class="control-label" style="float:left;margin-left:10px;">Đến</label>
+                <div class="col-lg-2">
+                    <input type="date" id="ngay_kt" name="ngay_kt" class="form-control" />
+                </div>
+                <input id="makh" name="makh" hidden value="@TempData["MaKH"]" />
+                <div class="col-xs-1">
+                    <button type="submit" id="btnChon" class="btn btn-success" onclick="return CheckInput();">Xem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên tour</th>
+                <th>Thông tin tour</th>
+                <th>Giá tour(VNĐ)</th>
+                <th>Ngày đi</th>
+                <th>Ngày kết thúc</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.TenTour</td>
+                        <td>@item.ThongTinTour</td>
+                        <td>@item.GiaTour</td>
+                        <td>@Html.DisplayFor(modelItem => item.NgayDi, "{0:dd-MM-yyyy}")</td>
+                        <td>@Html.DisplayFor(modelItem => item.NgayKT, "{0:dd-MM-yyyy}")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<a href="@Url.Action("Danhsach", "Tour")" title="Danh sách tour" class="btn btn-danger">Xem danh sách tour</a>
+<script type="text/javascript">
+    function Check() {
+        var kt = true;
+        var ngaydi = document.getElementById("ngay_di").value;
+        var ngaykt = document.getElementById("ngay_kt").value;
+        if (ngaydi == "")
+            kt = false;
+        if (ngaykt == "")
+            kt = false;
+        if (ngaydi > ngaykt)
+            kt = false;
+        return kt;
+    }
+    function CheckInput() {
+        if (Check())
+            return true;   
+        else {
+            alert("Vui lòng chọn lại ngày.");
+            return false;
+        }
+    }
+</script>

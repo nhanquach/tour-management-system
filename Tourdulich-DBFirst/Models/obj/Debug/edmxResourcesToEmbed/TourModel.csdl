@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyTourModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChiTietDoan">
+    <Key>
+      <PropertyRef Name="Ma_CTDoan" />
+    </Key>
+    <Property Name="Ma_CTDoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaDoan" Type="Int32" />
+    <Property Name="MaKH" Type="Int32" />
+    <NavigationProperty Name="Doan" Relationship="Self.FK_ChiTietDoan_Doan" FromRole="ChiTietDoan" ToRole="Doan" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_ChiTietDoan_KhachHang" FromRole="ChiTietDoan" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="ChiTietTour">
+    <Key>
+      <PropertyRef Name="MaCTTour" />
+    </Key>
+    <Property Name="MaCTTour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTour" Type="Int32" Nullable="false" />
+    <Property Name="MaDiaDiem" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DiaDiem" Relationship="Self.FK_ChiTietTour_DiaDiem" FromRole="ChiTietTour" ToRole="DiaDiem" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_ChiTietTour_Tour" FromRole="ChiTietTour" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="DiaDiem">
+    <Key>
+      <PropertyRef Name="MaDiaDiem" />
+    </Key>
+    <Property Name="MaDiaDiem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDiaDiem" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ThongTinDD" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tinh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Nuoc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietTours" Relationship="Self.FK_ChiTietTour_DiaDiem" FromRole="DiaDiem" ToRole="ChiTietTour" />
+  </EntityType>
+  <EntityType Name="Doan">
+    <Key>
+      <PropertyRef Name="MaDoan" />
+    </Key>
+    <Property Name="MaDoan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDoan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDi" Type="DateTime" Precision="0" />
+    <Property Name="NgayKT" Type="DateTime" Precision="0" />
+    <Property Name="MaTour" Type="Int32" />
+    <NavigationProperty Name="ChiTietDoans" Relationship="Self.FK_ChiTietDoan_Doan" FromRole="Doan" ToRole="ChiTietDoan" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_Doan_Tour" FromRole="Doan" ToRole="Tour" />
+    <Property Name="TinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SoDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietDoans" Relationship="Self.FK_ChiTietDoan_KhachHang" FromRole="KhachHang" ToRole="ChiTietDoan" />
+    <NavigationProperty Name="QuaTrinhTours" Relationship="QuanLyTourModel.FK_QuaTrinhTour_KhachHang" FromRole="KhachHang" ToRole="QuaTrinhTour" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="MaTour" />
+    </Key>
+    <Property Name="MaTour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTour" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ThongTinTour" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTour" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="ChiTietTours" Relationship="Self.FK_ChiTietTour_Tour" FromRole="Tour" ToRole="ChiTietTour" />
+    <NavigationProperty Name="Doans" Relationship="Self.FK_Doan_Tour" FromRole="Tour" ToRole="Doan" />
+  </EntityType>
+  <Association Name="FK_ChiTietDoan_Doan">
+    <End Role="Doan" Type="Self.Doan" Multiplicity="0..1" />
+    <End Role="ChiTietDoan" Type="Self.ChiTietDoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doan">
+        <PropertyRef Name="MaDoan" />
+      </Principal>
+      <Dependent Role="ChiTietDoan">
+        <PropertyRef Name="MaDoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDoan_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="ChiTietDoan" Type="Self.ChiTietDoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="ChiTietDoan">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietTour_DiaDiem">
+    <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="1" />
+    <End Role="ChiTietTour" Type="Self.ChiTietTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiaDiem">
+        <PropertyRef Name="MaDiaDiem" />
+      </Principal>
+      <Dependent Role="ChiTietTour">
+        <PropertyRef Name="MaDiaDiem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietTour_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="ChiTietTour" Type="Self.ChiTietTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="MaTour" />
+      </Principal>
+      <Dependent Role="ChiTietTour">
+        <PropertyRef Name="MaTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doan_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="Doan" Type="Self.Doan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="MaTour" />
+      </Principal>
+      <Dependent Role="Doan">
+        <PropertyRef Name="MaTour" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyTourEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietDoans" EntityType="Self.ChiTietDoan" />
+    <EntitySet Name="ChiTietTours" EntityType="Self.ChiTietTour" />
+    <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+    <EntitySet Name="Doans" EntityType="Self.Doan" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tours" EntityType="Self.Tour" />
+    <AssociationSet Name="FK_ChiTietDoan_Doan" Association="Self.FK_ChiTietDoan_Doan">
+      <End Role="Doan" EntitySet="Doans" />
+      <End Role="ChiTietDoan" EntitySet="ChiTietDoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDoan_KhachHang" Association="Self.FK_ChiTietDoan_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="ChiTietDoan" EntitySet="ChiTietDoans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietTour_DiaDiem" Association="Self.FK_ChiTietTour_DiaDiem">
+      <End Role="DiaDiem" EntitySet="DiaDiems" />
+      <End Role="ChiTietTour" EntitySet="ChiTietTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietTour_Tour" Association="Self.FK_ChiTietTour_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="ChiTietTour" EntitySet="ChiTietTours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doan_Tour" Association="Self.FK_Doan_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="Doan" EntitySet="Doans" />
+    </AssociationSet>
+    <EntitySet Name="QuaTrinhTours" EntityType="QuanLyTourModel.QuaTrinhTour" />
+    <AssociationSet Name="FK_QuaTrinhTour_KhachHang" Association="QuanLyTourModel.FK_QuaTrinhTour_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="QuaTrinhTour" EntitySet="QuaTrinhTours" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="QuaTrinhTour">
+    <Key>
+      <PropertyRef Name="Ma" />
+    </Key>
+    <Property Name="Ma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaKH" Type="Int32" />
+    <Property Name="TenTour" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ThongTinTour" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTour" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NgayDi" Type="DateTime" Precision="0" />
+    <Property Name="NgayKT" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="KhachHang" Relationship="QuanLyTourModel.FK_QuaTrinhTour_KhachHang" FromRole="QuaTrinhTour" ToRole="KhachHang" />
+  </EntityType>
+  <Association Name="FK_QuaTrinhTour_KhachHang">
+    <End Type="QuanLyTourModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+    <End Type="QuanLyTourModel.QuaTrinhTour" Role="QuaTrinhTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="QuaTrinhTour">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
