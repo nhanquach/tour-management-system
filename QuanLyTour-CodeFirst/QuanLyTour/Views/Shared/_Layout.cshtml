@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My Cool Tour</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/materialize/css/materialize.min.css")
+    @Styles.Render("~/Content/Site.css")
+</head>
+<body>
+    <nav class="indigo">
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="#!" class="brand-logo">mCT</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="">@Html.ActionLink("Tours", "Index", "TourGroups")</li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li class="active">Home</li>
+                    <li class="">All available TourGroup</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My Cool Tour</p>
+        </footer>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/materialize/materialize.min.js")
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
+    @RenderSection("scripts", required: false)
+    
+    
+</body>
+</html>
