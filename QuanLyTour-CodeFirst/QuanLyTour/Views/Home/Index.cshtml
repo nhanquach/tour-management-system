@@ -2,30 +2,106 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<style>
+    .first_panel{
+        text-align: center;
+        background-image: url("../Content/images/first.jpg");
+        background-position: center;
+        height: 600px;
+        background-size: cover;
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    }
+    .form-group{
+        text-align:center;
+    }
+    .second_panel {
+        background-image: url("../Content/images/second.jpg");
+        background-position: center;
+        height: 400px;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .fourth_panel {
+        background-image: url("../Content/images/commons.jpg");
+        background-position: center;
+        height: 100%;
+        background-size: cover;
+        padding: 2rem;
+    }
+    .card-deck {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .card-img-top{
+        background-size: cover;
+    }
+    .footer{
+        height: 100%;
+        background-color: #0094ff;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    </style>
+<div class="first_panel" id="top">
+    <div class="search_tour container text-white">
+        <div class="row brand">
+            <h1 class="col-md-12 display-2" style="padding-top: 5rem;">My Cool Tour</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="" class="display-4">I want to go to...</label>
+                <input type="text" class="form-control" 
+                       style="text-align: center"
+                       id="" 
+                       aria-describedby="emailHelp" 
+                       placeholder="London, Bangkok,...">
+            </div>
+            <button type="submit" class="btn btn-primary">Find tour</button>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</div>
+<hr />
+<div class="second_panel">
+    <div class="container text-white" style="padding-top: 4rem;">
+        <h3 class="display-4">Come find your next adventure</h3>
+        <p class="lead">Where do you want to go next?</p>
+        <button class="btn btn-outline-secondary" style="color: white;">All Tours</button>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+<div class="third_panel container">
+    <div class="card-deck">
+        <div class="card">
+            <img class="card-img-top" src="~/Content/images/bigben.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/Content/images/tokyo.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
     </div>
+</div>
+<div class="fourth_panel">
+    <div class="container text-white" style="padding-top: 4rem; text-align: right;">
+        <h3 class="display-4">Common Tours</h3>
+        <p class="lead">Paris</p>
+        <p class="lead">London</p>
+        <p class="lead">Tokyo</p>
+        <p class="lead">USA</p>
+        <button class="btn btn-outline-secondary text-white">Show all</button>
+    </div>
+</div>
+<hr />
+<div class="footer center text-white">
+    <h1 class="display-4">My Cool Tour</h1>
+    <p class="lead">Adventures Awaits</p>
+    <a class="btn btn-outline-info" style="color: white;" href="#top">Back to Top</a>
 </div>

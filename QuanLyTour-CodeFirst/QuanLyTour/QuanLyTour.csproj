@@ -161,6 +161,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\bigben.jpg" />
+    <Content Include="Content\images\commons.jpg" />
+    <Content Include="Content\images\Desktop.png" />
+    <Content Include="Content\images\first.jpg" />
+    <Content Include="Content\images\second.jpg" />
+    <Content Include="Content\images\tokyo.jpg" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
     <Content Include="Content\materialize\font\material-design-icons\LICENSE.txt" />
