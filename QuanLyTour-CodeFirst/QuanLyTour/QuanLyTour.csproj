@@ -154,8 +154,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\TourDetail.cs" />
     <Compile Include="Models\TourGroup.cs" />
+    <Compile Include="Models\TourGroupDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,14 +254,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TourGroups\Create.cshtml" />
     <Content Include="Views\TourGroups\Delete.cshtml" />
     <Content Include="Views\TourGroups\Details.cshtml" />
     <Content Include="Views\TourGroups\Edit.cshtml" />
     <Content Include="Views\TourGroups\Index.cshtml" />
+    <Content Include="Views\Shared\_User_layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

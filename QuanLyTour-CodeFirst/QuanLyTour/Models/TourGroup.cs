@@ -5,6 +5,11 @@ using System.Web;
 
 namespace QuanLyTour.Models
 {
+    public enum TStatus
+    {
+        Delayed, Scheduled, Closed, Cancel
+    }
+
     public class TourGroup
     {
         public int ID { get; set; }
@@ -13,6 +18,7 @@ namespace QuanLyTour.Models
         public DateTime LeaveDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public int TourID { get; set; }
-        public int Status { get; set; }
+        public virtual TStatus Status { get; set; }
+        public int NumberOfPeople { get; set; }
     }
 }
