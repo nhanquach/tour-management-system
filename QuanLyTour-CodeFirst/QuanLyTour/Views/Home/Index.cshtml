@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <style>
@@ -54,7 +56,6 @@
                 <input type="text" class="form-control" 
                        style="text-align: center"
                        id="" 
-                       aria-describedby="emailHelp" 
                        placeholder="London, Bangkok,...">
             </div>
             <button type="submit" class="btn btn-primary">Find tour</button>
@@ -67,7 +68,7 @@
     <div class="container text-white" style="padding-top: 4rem;">
         <h3 class="display-4">Come find your next adventure</h3>
         <p class="lead">Where do you want to go next?</p>
-        <button class="btn btn-outline-secondary" style="color: white;">All Tours</button>
+        <a href="/Tours" class="btn btn-outline-secondary" style="color: white;">All Tours</a>
     </div>
 </div>
 <div class="third_panel container">

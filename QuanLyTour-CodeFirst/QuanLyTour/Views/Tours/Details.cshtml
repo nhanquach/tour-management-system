@@ -1,0 +1,43 @@
+﻿@model QuanLyTour.Models.Tour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TourID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

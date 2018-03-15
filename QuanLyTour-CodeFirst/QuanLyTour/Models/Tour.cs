@@ -11,5 +11,6 @@ namespace QuanLyTour.Models
         public String TourName { get; set; }
         public String TourDescription { get; set; }
         public String TourPrice { get; set; }
+        public virtual ICollection<TourDetail> TourDetail { get; set; }
     }
 }

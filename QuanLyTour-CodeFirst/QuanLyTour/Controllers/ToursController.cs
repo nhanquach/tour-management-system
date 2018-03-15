@@ -11,107 +11,107 @@ using QuanLyTour.Models;
 
 namespace QuanLyTour.Controllers
 {
-    public class TourGroupsController : Controller
+    public class ToursController : Controller
     {
         private TourContext db = new TourContext();
 
-        // GET: TourGroups
+        // GET: Tours
         public ActionResult Index()
         {
-            return View(db.TourGroup.ToList());
+            return View(db.Tour.ToList());
         }
 
-        // GET: TourGroups/Details/5
+        // GET: Tours/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourGroup tourGroup = db.TourGroup.Find(id);
-            if (tourGroup == null)
+            Tour tour = db.Tour.Find(id);
+            if (tour == null)
             {
                 return HttpNotFound();
             }
-            return View(tourGroup);
+            return View(tour);
         }
 
-        // GET: TourGroups/Create
+        // GET: Tours/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TourGroups/Create
+        // POST: Tours/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,LeaveDate,ReturnDate,TourID,Status")] TourGroup tourGroup)
+        public ActionResult Create([Bind(Include = "TourID,TourName,TourDescription,TourPrice")] Tour tour)
         {
             if (ModelState.IsValid)
             {
-                db.TourGroup.Add(tourGroup);
+                db.Tour.Add(tour);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tourGroup);
+            return View(tour);
         }
 
-        // GET: TourGroups/Edit/5
+        // GET: Tours/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourGroup tourGroup = db.TourGroup.Find(id);
-            if (tourGroup == null)
+            Tour tour = db.Tour.Find(id);
+            if (tour == null)
             {
                 return HttpNotFound();
             }
-            return View(tourGroup);
+            return View(tour);
         }
 
-        // POST: TourGroups/Edit/5
+        // POST: Tours/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,LeaveDate,ReturnDate,TourID,Status")] TourGroup tourGroup)
+        public ActionResult Edit([Bind(Include = "TourID,TourName,TourDescription,TourPrice")] Tour tour)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tourGroup).State = EntityState.Modified;
+                db.Entry(tour).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tourGroup);
+            return View(tour);
         }
 
-        // GET: TourGroups/Delete/5
+        // GET: Tours/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TourGroup tourGroup = db.TourGroup.Find(id);
-            if (tourGroup == null)
+            Tour tour = db.Tour.Find(id);
+            if (tour == null)
             {
                 return HttpNotFound();
             }
-            return View(tourGroup);
+            return View(tour);
         }
 
-        // POST: TourGroups/Delete/5
+        // POST: Tours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TourGroup tourGroup = db.TourGroup.Find(id);
-            db.TourGroup.Remove(tourGroup);
+            Tour tour = db.Tour.Find(id);
+            db.Tour.Remove(tour);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -9,7 +9,10 @@ namespace QuanLyTour.DAL
 {
     public class TourContext : DbContext
     {
-        public TourContext() : base("TourContext"){}
+        public TourContext() : base("TourContext")
+        {
+            Database.SetInitializer<TourContext>(new TourInitializer());
+        }
 
         public DbSet<TourGroup> TourGroup { get; set; }
         public DbSet<TourGroupDetail> TourGroupDetail { get; set; }
