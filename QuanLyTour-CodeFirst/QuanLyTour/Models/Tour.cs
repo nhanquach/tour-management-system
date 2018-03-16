@@ -7,10 +7,13 @@ namespace QuanLyTour.Models
 {
     public class Tour
     {
+        public int ID { get; set; }
         public int TourID { get; set; }
         public String TourName { get; set; }
         public String TourDescription { get; set; }
         public String TourPrice { get; set; }
-        public virtual ICollection<TourDetail> TourDetail { get; set; }
+
+        public virtual ICollection<TourDetail> TourDetails { get; set; }
+        public virtual ICollection<TourGroupDetail> TourGroupDetail { get; set; }
     }
 }

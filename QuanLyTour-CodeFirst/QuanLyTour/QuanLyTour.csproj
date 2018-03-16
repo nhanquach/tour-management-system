@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="DAL\TourContext.cs" />
     <Compile Include="DAL\TourInitializer.cs" />
@@ -262,6 +263,11 @@
     <Content Include="Views\Tours\Details.cshtml" />
     <Content Include="Views\Tours\Edit.cshtml" />
     <Content Include="Views\Tours\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

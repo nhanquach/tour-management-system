@@ -9,8 +9,9 @@ namespace QuanLyTour.Models
     {
         public int ID { get; set; }
         public int TourID { get; set; }
-        //public int LocationID { get; set; }
-        //Because 1 Tour can go to many Location
         public int LocationID { get; set; }
+        
+        public virtual Tour Tour { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

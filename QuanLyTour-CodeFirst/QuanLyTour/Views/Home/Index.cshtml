@@ -50,17 +50,15 @@
         <div class="row brand">
             <h1 class="col-md-12 display-2" style="padding-top: 5rem;">My Cool Tour</h1>
         </div>
-        <form>
-            <div class="form-group">
-                <label for="" class="display-4">I want to go to...</label>
-                <input type="text" class="form-control" 
-                       style="text-align: center"
-                       id="" 
-                       placeholder="London, Bangkok,...">
-            </div>
-            <button type="submit" class="btn btn-primary">Find tour</button>
-            <button type="submit" class="btn btn-outline-primary">Sign in</button>
-        </form>
+        <div class="form-group">
+            <label for="" class="display-4">I want to go to...</label>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group" }))
+            {
+                @Html.TextBox("q", null, new { @class = "form-control" })
+                <button type="submit" class="btn btn-primary">Find tours</button>
+            }
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Sign in</button>
     </div>
 </div>
 <hr />
