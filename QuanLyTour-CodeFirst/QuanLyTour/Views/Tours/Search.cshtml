@@ -1,0 +1,33 @@
+﻿@model IEnumerable<QuanLyTour.Models.Tour>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h2>Result for <strong>@ViewBag.q</strong></h2>
+
+<div class="row">
+    @if (Model != null)
+    {
+        foreach (var result in Model)
+        {
+            <div class="col-md-12 card" style="margin: 1rem;">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        @Html.DisplayFor(modelItem => result.TourName)
+                    </h3>
+                    <p>
+                        @Html.DisplayFor(modelItem => result.TourDescription)
+                        <br />
+                        Price: $@Html.DisplayFor(modelItem => result.TourPrice)
+                    </p>
+                    @Html.ActionLink("Take a look", "Details", new { id = result.ID }, new { @class = "btn btn-outline-primary" })
+                </div>
+            </div>
+        }
+    } else
+    {
+        <p>Not found</p>
+    }
+</div>

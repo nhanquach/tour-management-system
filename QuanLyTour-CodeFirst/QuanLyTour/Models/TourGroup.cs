@@ -21,6 +21,8 @@ namespace QuanLyTour.Models
         public virtual TStatus Status { get; set; }
         public int NumberOfPeople { get; set; }
 
+        public virtual Tour Tour { get; set; }
+
         public virtual ICollection<TourGroupDetail> TourGroupDetails { get; set; }
     }
 }

@@ -15,11 +15,12 @@ namespace QuanLyTour.DAL
             Database.SetInitializer<TourContext>(new TourInitializer());
         }
 
-        public DbSet<TourGroup> TourGroup { get; set; }
-        public DbSet<TourGroupDetail> TourGroupDetail { get; set; }
+        public DbSet<TourGroup> TourGroups { get; set; }
+        public DbSet<TourGroupDetail> TourGroupDetails { get; set; }
 
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Bill> Bill { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Bill> Bills { get; set; }
 
         public DbSet<Location> Locations { get; set; }
 

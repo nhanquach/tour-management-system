@@ -16,6 +16,10 @@ namespace QuanLyTour.Models
         public int CustomerID { get; set; }
         public int TourGroupID { get; set; }
         public int TourID { get; set; }
+        public double TourPrice { get; set; }
+
         public BillStatus Status { get; set; }
+
+        public virtual Customer Customer { get; set; }
     }
 }

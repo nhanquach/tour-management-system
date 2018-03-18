@@ -34,12 +34,24 @@ namespace QuanLyTour.Controllers
             {
                 return HttpNotFound();
             }
-            //else
-            //{
-                //tour.TourDetails = tourDetail;
-            //}
             
             return View(tour);
+        }
+
+        public ActionResult Search(String q)
+        {
+            IQueryable<Tour> result = null;
+            if (!String.IsNullOrEmpty(q))
+            {
+                result = from r in db.Tours where r.TourName.Contains(q) select r;
+            }
+            else
+            {
+                result = from r in db.Tours select r;
+            }
+            
+            ViewBag.q = q;
+            return View(result.ToList());
         }
 
         // GET: Tours/Create

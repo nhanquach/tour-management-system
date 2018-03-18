@@ -13,5 +13,7 @@ namespace QuanLyTour.Models
         public String Address { get; set; }
         public String Gender { get; set; }
         public String PhoneNumber { get; set; }
+
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }

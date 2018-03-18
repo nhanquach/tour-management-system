@@ -54,7 +54,7 @@ namespace QuanLyTour.DAL
                 new TourGroup {Name="Group 1", Description = "ABC XYZ", LeaveDate = DateTime.Parse("2018-03-03"), ReturnDate = DateTime.Parse("2018-3-10"), Status= TStatus.Scheduled, NumberOfPeople = 35, TourID = 2},
                 new TourGroup {Name="Group 1", Description = "ABC XYZ", LeaveDate = DateTime.Parse("2018-03-03"), ReturnDate = DateTime.Parse("2018-3-10"), Status= TStatus.Scheduled, NumberOfPeople = 35, TourID = 3}
             };
-            tourGroups.ForEach(tourgroup => context.TourGroup.Add(tourgroup));
+            tourGroups.ForEach(tourgroup => context.TourGroups.Add(tourgroup));
             context.SaveChanges();
 
             var groupDetail = new List<TourGroupDetail>
@@ -63,7 +63,7 @@ namespace QuanLyTour.DAL
                 new TourGroupDetail { TourID = 1, TourGroup = 2},
                 new TourGroupDetail { TourID = 2, TourGroup = 3}
             };
-            groupDetail.ForEach(tourD => context.TourGroupDetail.Add(tourD));
+            groupDetail.ForEach(tourD => context.TourGroupDetails.Add(tourD));
 
             context.SaveChanges();
         }

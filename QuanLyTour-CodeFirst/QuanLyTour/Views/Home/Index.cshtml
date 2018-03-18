@@ -1,18 +1,31 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_layout.cshtml";
 
 }
 
 <style>
     .first_panel{
-        text-align: center;
-        background-image: url("../Content/images/first.jpg");
-        background-position: center;
-        height: 600px;
-        background-size: cover;
-
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
+
+    @@media screen and (max-width: 576px){
+        .left_panel {
+            color: white;
+            background-image: url("../Content/images/first.jpg");
+            background-position: center;
+            background-size: cover;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .right_panel{
+            display: none;
+        }
+        
+    }
+
     .form-group{
         text-align:center;
     }
@@ -44,25 +57,30 @@
         padding: 2rem;
     }
 
-    </style>
-<div class="first_panel" id="top">
-    <div class="search_tour container text-white">
-        <div class="row brand">
-            <h1 class="col-md-12 display-2" style="padding-top: 5rem;">My Cool Tour</h1>
-        </div>
-        <div class="form-group">
-            <label for="" class="display-4">I want to go to...</label>
+</style>
+
+<div class="first_panel container" id="top">
+    <div class="row">
+        <div class="col-md-6 left_panel d-md-block" style="display: block; margin: auto;">
+            <h1 class="display-3">My Cool Tour</h1>
+            <p>I want to go to</p>
+            
             @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group" }))
-            {
-                @Html.TextBox("q", null, new { @class = "form-control" })
-                <button type="submit" class="btn btn-primary">Find tours</button>
-            }
+                {
+                <div class="input-group mb-3">
+                    @Html.TextBox("q", null, new { @class = "form-control" })
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Find tours</button>
+                    </div>
+                </div>
+                }   
         </div>
-        <button type="submit" class="btn btn-outline-primary">Sign in</button>
+        <div class="col-md-6 d-sm-none d-md-block right_panel">
+            <img class="img-fluid" src="~/Content/images/first.jpg" />
+        </div>
     </div>
 </div>
-<hr />
-<div class="second_panel">
+<div class="second_panel container">
     <div class="container text-white" style="padding-top: 4rem;">
         <h3 class="display-4">Come find your next adventure</h3>
         <p class="lead">Where do you want to go next?</p>
@@ -76,7 +94,7 @@
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">Take a look</a>
             </div>
         </div>
         <div class="card">
@@ -84,7 +102,7 @@
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="#" class="btn btn-primary">Take a look</a>
             </div>
         </div>
     </div>

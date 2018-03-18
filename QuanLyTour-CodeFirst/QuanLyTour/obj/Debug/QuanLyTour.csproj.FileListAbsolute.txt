@@ -88,3 +88,5 @@ C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanL
 C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanLyTour\obj\Debug\QuanLyTour.csproj.CoreCompileInputs.cache
 C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanLyTour\obj\Debug\QuanLyTour.dll
 C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanLyTour\obj\Debug\QuanLyTour.pdb
+C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanLyTour\obj\Debug\QuanLyTour.csprojResolveAssemblyReference.cache
+C:\Users\nhan\Documents\GitHub\tour-management-system\QuanLyTour-CodeFirst\QuanLyTour\obj\Debug\QuanLyTour.csproj.CopyComplete

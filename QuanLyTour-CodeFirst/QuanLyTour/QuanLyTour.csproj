@@ -163,6 +163,7 @@
     <Compile Include="Models\TourDetail.cs" />
     <Compile Include="Models\TourGroup.cs" />
     <Compile Include="Models\TourGroupDetail.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +269,7 @@
     <Content Include="Views\Locations\Details.cshtml" />
     <Content Include="Views\Locations\Edit.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Tours\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
