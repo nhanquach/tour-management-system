@@ -1,0 +1,53 @@
+﻿@model QuanLyTour.Models.User
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+<style>
+    .input-group{
+        margin-bottom: 1rem;
+    }
+
+    .txt-center {
+        text-align: center;
+    }
+
+    .display-huge {
+        font-size: 5rem;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 d-md-block" style="display: block; margin: auto;">
+            <h1 class="txt-center text-info"><i class="material-icons display-huge">account_circle</i></h1>
+            <h2 class="display-4 txt-center">Sign In</h2>
+            @using (Html.BeginForm("SignInWithEmailAndPassword", "User", FormMethod.Get, new { @class = "form-group" }))
+            {
+
+                <div class="input-group">
+                    <div class="input-group">
+                        <span class="" id="basic-addon1">Email</span>
+                    </div>
+                    @Html.TextBox("email", null, new { @class = "form-control" })
+                </div>
+                <div class="input-group">
+                    <div class="input-group">
+                        <span class="" id="">Password</span>
+                    </div>
+                    @Html.Password("password", null, new { @class = "form-control password" })
+                </div>
+
+                <button type="submit" class="form-control btn btn-primary">Sign in</button>
+                <br />
+                <p class="lead text-center">or</p>
+
+                <button class="form-control btn btn-outline-secondary">Sign up here</button>
+            }
+
+        </div>
+    </div>
+
+</div>
