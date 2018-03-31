@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QuanLyTour.Models.Tour>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TourName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TourDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TourPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TourName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TourDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TourPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TourID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TourID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TourID })
+        </td>
+    </tr>
+}
+
+</table>

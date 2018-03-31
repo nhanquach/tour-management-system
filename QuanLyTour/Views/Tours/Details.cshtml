@@ -1,0 +1,116 @@
+﻿@model QuanLyTour.Models.Tour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourPrice)
+        </dd>
+        <dt>
+            Destinations
+        </dt>
+
+        <dd>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Detail</th>
+                </tr>
+                @if (Model.TourDetails != null)
+                {
+                    foreach (var item in Model.TourDetails)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location.LocationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location.LocationDescription)
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+            <tr>
+                <td colspan="2" style="text-align:center;">Not found</td>
+            </tr>
+                }
+            </table>
+        </dd>
+
+        <dt>
+            Available Group(s)
+        </dt>
+
+        <dd>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Leave day</th>
+                    <th>Return day</th>
+                    <th>Number of People</th>
+                </tr>
+                @if (Model.TourGroups.Count > 0)
+                {
+                    foreach (var item in Model.TourGroups)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReturnDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOfPeople)
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" style="text-align:center;">Not available</td>
+                </tr>
+            }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TourID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

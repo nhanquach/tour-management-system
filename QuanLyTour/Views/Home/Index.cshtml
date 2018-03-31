@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_layout.cshtml";
+
+}
+
+<style>
+    * {
+        margin: 0px;
+    }
+
+    .container-fluid {
+        height: 100vh;
+        background-image: url("../Content/images/second.jpg");
+        background-size: cover;
+    }
+
+    .container {
+        z-index: 10;
+    }
+
+    .half-left {
+        z-index: 5;
+        height: 100vh;
+        width: 50%;
+        background: #EAE9E5;
+        position: fixed;
+        top: 0px;
+        left: -100px;
+        transform: skew(-20deg)
+    }
+
+    .search-bar {
+        margin-top: 20%;
+        transform: translateY(-50%);
+        padding: 50px;
+    }
+
+    .search-input {
+        width: 500px;
+        height: 3rem;
+    }
+
+    .input-group {
+        width: 500px !important;
+    }
+
+    .active {
+        border-bottom: 1px solid black;
+    }
+    
+</style>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+            <div class="container">
+                @Html.ActionLink("MCT", "Index", "Home", null, new { @class = "navbar-brand center" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Tours", "Index", "Tours", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                    
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("Sign In/Sign Up", "SignIn", "User",null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    <div class="half-left"></div>
+    <div class="container search-bar">
+        <h3>Search your adventure</h3>
+        <div class="form-inline my-2 my-lg-0">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-group" }))
+        {
+            <div class="input-group">
+                @Html.TextBox("q", null, new { @class = "form-control search-input" })
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Find tours</button>
+                </div>
+            </div>
+    }
+        </div>
+    </div>
+</div>
