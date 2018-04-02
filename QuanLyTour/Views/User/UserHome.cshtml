@@ -1,43 +1,46 @@
-﻿@model QuanLyTour.Models.User
+﻿@*@model QuanLyTour.Models.User*@
+@model IEnumerable<QuanLyTour.Models.User>
 
 @{
-    ViewBag.Title = "UserHome";
+    ViewBag.Title = "User Home";
     Layout = "~/Views/Shared/_User_layout.cshtml";
 }
 
-<h2>UserHome</h2>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+@foreach (var item in Model)
+{
+<h3>Hello, @Html.DisplayFor(modelItem => item.Name)</h3>
+        
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+@*<div>
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <h4>User Home</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+        </dl>
+    </div>*@

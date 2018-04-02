@@ -27,31 +27,31 @@
     <div class="row">
         <div class="col-md-6 d-md-block" style="display: block; margin: auto;">
             <h1 class="txt-center text-info"><i class="material-icons display-huge">account_circle</i></h1>
+
             <h2 class="display-4 txt-center">Sign In</h2>
-            @using (Html.BeginForm("SignIn", "User", FormMethod.Get, new { @class = "form-group" }))
-            {
+            @using (Html.BeginForm("SignIn", "User", FormMethod.Post, new { @class = "form-group" }))
+    {
 
-                <div class="input-group">
-                    <div class="input-group">
-                        <span class="" id="basic-addon1">Email</span>
-                    </div>
-                    @Html.TextBox("email", null, new { @class = "form-control" })
-                </div>
-                <div class="input-group">
-                    <div class="input-group">
-                        <span class="" id="">Password</span>
-                    </div>
-                    @Html.Password("password", null, new { @class = "form-control password" })
-                </div>
-                <div>
-                    <p class="has-error">@ViewBag.error</p>
-                </div>
-                <button type="submit" class="form-control btn btn-primary">Sign in</button>
-                <br />
-                <p class="lead text-center">or</p>
-
-                <button class="form-control btn btn-outline-secondary">Sign up here</button>
-            }
+        <div class="input-group">
+            <div class="input-group">
+                <span class="" id="basic-addon1">Email</span>
+            </div>
+            @Html.TextBox("email", null, new { @type = "email", @class = "form-control" })
+        </div>
+        <div class="input-group">
+            <div class="input-group">
+                <span class="" id="">Password</span>
+            </div>
+            @Html.Password("password", null, new { @class = "form-control password" })
+        </div>
+        <div>
+            <p class="has-error">@ViewBag.error</p>
+        </div>
+        <button type="submit" class="form-control btn btn-primary">Sign in</button>
+        <br />
+        <p class="lead text-center">or</p>
+}
+            @Html.ActionLink("Sign up here", "SignUp", "User", null, new { @class = "form-control btn btn-outline-secondary" })
 
         </div>
     </div>
