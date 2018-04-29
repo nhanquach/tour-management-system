@@ -1,5 +1,4 @@
-﻿@*@model QuanLyTour.Models.User*@
-@model IEnumerable<QuanLyTour.Models.User>
+﻿@model QuanLyTour.Models.User
 
 @{
     ViewBag.Title = "User Home";
@@ -7,11 +6,7 @@
 }
 
 
-@foreach (var item in Model)
-{
-<h3>Hello, @Html.DisplayFor(modelItem => item.Name)</h3>
-        
-}
+<h4>Welcome, @Session["UserName"]</h4>
 
 @*<div>
         <h2>@Html.DisplayFor(model => model.Name)</h2>

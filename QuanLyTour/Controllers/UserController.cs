@@ -14,18 +14,18 @@ namespace QuanLyTour.Controllers
         public ActionResult SignIn(String email, String password)
         {
             ViewBag.error = "";
-            IQueryable<User> result = null;
             if(!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password))
             {
-                result = from u in db.Users
-                         where u.Email.Equals(email)
-                         where u.Password.Equals(password)
-                         select u;
+                var result = db.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password))
+                    .FirstOrDefault();
 
-                if(result.FirstOrDefault() != null)
+                if(result != null)
                 {
                     //Sign In successfully
-                    return View("UserHome", result.ToList());
+                    //Save log in session
+                    Session["UserEmail"] = result.Email;
+                    Session["UserName"] = result.Name;
+                    return View("UserHome", result);
                 } else
                 {
                     ViewBag.error = "Email or Password not match.";
@@ -33,7 +33,23 @@ namespace QuanLyTour.Controllers
             }
             return View();
         }
-        
+
+        public ActionResult Home()
+        {
+            if(Session["UserEmail"] != null && Session["UserName"] != null)
+            {
+                return View("UserHome");
+            }
+            return View("SignIn");
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["UserEmail"] = null;
+            Session["UserName"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public ActionResult SignUp()
         {
@@ -51,7 +67,7 @@ namespace QuanLyTour.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return View();
+                return View("SignIn");
             } else
             {
                 ViewBag.error = "Password and Repeat Password do not match.";
