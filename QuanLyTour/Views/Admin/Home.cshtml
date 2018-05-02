@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Admin home";
+    Layout = "./_Admin_layout.cshtml";
+}
+<h3>
+    Admin Control
+</h3>
+<div class="row" style="margin: 1rem;">
+    <div class="col-sm-12 card">
+        <div class="card-body">
+            <div class="card-title">
+                <span class="display-4">Summary</span>
+            </div>
+            <div>
+                <p class="lead">
+                    Number of Locations: <strong>@ViewBag.numberOfLocations</strong>.<br />
+                    Number of Tours: <strong>@ViewBag.numberOfTours</strong>.<br />
+                    Number of Groups: <strong>@ViewBag.numberOfGroups</strong>.<br />
+                    Number of Users: <strong>@ViewBag.numberOfUsers</strong>.<br />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row card-deck">
+    <div class="col-md-3 card" >
+        <div class="card-body">
+            <h3 class="card-title">
+                Locations
+            </h3>
+            <p>
+                Add, Edit or Remove locations.
+            </p>
+            @Html.ActionLink("Access", "Locations", "Admin", new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+    <div class="col-md-3 card" >
+        <div class="card-body">
+            <h3 class="card-title">
+                Groups
+            </h3>
+            <p>
+                Add, Edit or Remove Groups of Tours.
+            </p>
+            @Html.ActionLink("Access", "Locations", "Admin", new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+    <div class="col-md-3 card">
+        <div class="card-body">
+            <h3 class="card-title">
+                Tours
+            </h3>
+            <p>
+                Add, Edit or Remove Tours.
+            </p>
+            @Html.ActionLink("Access", "Details", null, new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+    <div class="col-md-3 card">
+        <div class="card-body">
+            <h3 class="card-title">
+                Users
+            </h3>
+            <p>
+                Users' Bill status and Information.
+            </p>
+            @Html.ActionLink("Access", "Details", null, new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+</div>  

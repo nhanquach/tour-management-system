@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/Site.css")
+</head>
+<body>
+    <div> 
+            <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 d-md-block" style="display: block; margin: auto;">
+
+            <h2 class="display-4 txt-center">
+                Admin
+            </h2>
+            @using (Html.BeginForm("SignIn", "Admin", FormMethod.Post, new { @class = "form-group" }))
+    {
+
+        <div class="input-group">
+            <div class="input-group">
+                <span class="" id="basic-addon1">Username</span>
+            </div>
+            @Html.TextBox("username", null, new { @type = "text", @class = "form-control" })
+        </div>
+        <div class="input-group">
+            <div class="input-group">
+                <span class="" id="">Password</span>
+            </div>
+            @Html.Password("password", null, new { @class = "form-control password" })
+        </div>
+        <div>
+            <p class="has-error">@ViewBag.error</p>
+        </div>
+        <button type="submit" class="form-control btn btn-primary">Sign in</button>
+}
+
+        </div>
+    </div>
+
+</div>
+    </div>
+</body>
+</html>

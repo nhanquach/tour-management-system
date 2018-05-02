@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyTour.Controllers.Utils;
 
 namespace QuanLyTour.Controllers
 {
@@ -16,7 +17,11 @@ namespace QuanLyTour.Controllers
             ViewBag.error = "";
             if(!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password))
             {
-                var result = db.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password))
+                var hashedPassword = MD5.Create(password);
+
+                System.Diagnostics.Debug.WriteLine("Hashed Password: ",hashedPassword);
+
+                var result = db.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(hashedPassword))
                     .FirstOrDefault();
 
                 if(result != null)
@@ -60,11 +65,16 @@ namespace QuanLyTour.Controllers
         {
             string name = formCollection["Name"];
             string email = formCollection["Email"];
-            string password = formCollection["Password"];
-            string rePassword = formCollection["Repeat_password"];
+            string hashedPassword = MD5.Create(formCollection["Password"]);
+            string hashedRePassword = MD5.Create(formCollection["Repeat_password"]);
+            string password = hashedPassword;
+            string rePassword = hashedRePassword;
+            System.Diagnostics.Debug.WriteLine("Sign up Password ", password);
+
             bool checkPassword = (password == rePassword);
             if (checkPassword)
             {
+                user.Password = hashedPassword;
                 db.Users.Add(user);
                 db.SaveChanges();
                 return View("SignIn");

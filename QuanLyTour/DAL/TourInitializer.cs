@@ -6,7 +6,7 @@ using System.Web;
 
 namespace QuanLyTour.DAL
 {
-    public class TourInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TourContext>
+    public class TourInitializer : System.Data.Entity.DropCreateDatabaseAlways<TourContext>
     {
         protected override void Seed(TourContext context)
         {
