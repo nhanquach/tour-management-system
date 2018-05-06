@@ -5,71 +5,51 @@
     Layout = "~/Views/Shared/_User_layout.cshtml";
 }
 
-<h2>DETAILs</h2>
+<h2>Details about</h2>
 
 <div>
-    <h4>Tour</h4>
+    <h4 class="display-4">@Html.DisplayFor(model => model.TourName) Tour</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TourName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourDescription)
-        </dt>
-
-        <dd>
+        <h3>
+            Price: $@Html.DisplayFor(model => model.TourPrice)
+        </h3>
+        <h3>Info</h3>
+        <p>
             @Html.DisplayFor(model => model.TourDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourPrice)
-        </dd>
-        <dt>
-            Destinations
-        </dt>
-
-        <dd>
-            <table class="table table-striped">
+        </p>
+        <h3>
+            Destinations of the tour
+        </h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Detail</th>
+            </tr>
+            @if (Model.TourDetails != null)
+            {
+                foreach (var item in Model.TourDetails)
+                {
                 <tr>
-                    <th>Name</th>
-                    <th>Detail</th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.LocationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.LocationDescription)
+                    </td>
                 </tr>
-                @if (Model.TourDetails != null)
-                {
-                    foreach (var item in Model.TourDetails)
-                    {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Location.LocationName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Location.LocationDescription)
-                        </td>
-                    </tr>
-                    }
                 }
-                else
-                {
-                    <tr>
-                        <td colspan="2" style="text-align:center;">Not found</td>
-                    </tr>
-                }
-            </table>
-        </dd>
-
-        <dt>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2" style="text-align:center;">Not found</td>
+                </tr>
+            }
+        </table>
+        <h3>
             Available Group(s)
-        </dt>
+        </h3>
 
         <dd>
             <table class="table table-striped">
@@ -78,6 +58,7 @@
                     <th>Leave day</th>
                     <th>Return day</th>
                     <th>Number of People</th>
+                    <th></th>
                 </tr>
                 @if (Model.TourGroups.Count > 0)
                 {
@@ -96,6 +77,9 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.NumberOfPeople)
                         </td>
+                        <td>
+                            @Html.ActionLink("Book", "Index", null, new { @class = "btn btn-outline-primary" })
+                        </td>
                     </tr>
                 }
             }
@@ -111,6 +95,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TourID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark" })
 </p>

@@ -13,6 +13,7 @@ namespace QuanLyTour.Models
     public class TourGroup
     {
         public int ID { get; set; }
+        public int TourGroupID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public DateTime LeaveDate { get; set; }

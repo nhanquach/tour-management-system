@@ -6,14 +6,16 @@ using System.Web;
 
 namespace QuanLyTour.DAL
 {
-    public class TourInitializer : System.Data.Entity.DropCreateDatabaseAlways<TourContext>
+    public class TourInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TourContext>
     {
         protected override void Seed(TourContext context)
         {
+            var LondonEyeDescription = "The London Eye, known for sponsorship reasons as the Coca-Cola London Eye, is a giant Ferris wheel on the South Bank of the River Thames in London. The structure is 443 feet(135 m) tall and the wheel has a diameter of 394 feet(120 m).When it opened to the public in 2000 it was the world's tallest Ferris wheel. Its height was surpassed by the 525-foot (160 m) Star of Nanchang in 2006, the 541-foot (165 m) Singapore Flyer in 2008, and the 550-foot (167.6 m) High Roller (Las Vegas) in 2014. Supported by an A-frame on one side only, unlike the taller Nanchang and Singapore wheels, the Eye is described by its operators as the world's tallest cantilevered observation wheel.";
+            var BigBenTowerDescription = "Big Ben is the nickname for the Great Bell of the clock at the north end of the Palace of Westminster in London and is usually extended to refer to both the clock and the clock tower.[ The official name of the tower in which Big Ben is located was originally the Clock Tower, but it was renamed Elizabeth Tower in 2012 to mark the Diamond Jubilee of Elizabeth II.";
             var locations = new List<Location>
             {
-                new Location {LocationID=1, Country="London", LocationDescription = "skajdh", LocationName="London Eye" },
-                new Location {LocationID=2, Country="London", LocationDescription = "skajdh", LocationName="London Tower"},
+                new Location {LocationID=1, Country="England", LocationDescription = LondonEyeDescription, LocationName="London Eye" },
+                new Location {LocationID=2, Country="England", LocationDescription = BigBenTowerDescription, LocationName="Big Ben"},
                 new Location {LocationID=3, Country="Japan", LocationDescription = "skajdh", LocationName="Tokyo Tower"},
                 new Location {LocationID=4, Country="Shanghai", LocationDescription = "skajdh", LocationName="Bng"},
                 new Location {LocationID=5, Country="HongKong", LocationDescription = "skajdh", LocationName="HKT"}

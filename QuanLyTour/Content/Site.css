@@ -1,1 +1,28 @@
-﻿
+﻿.create-tour-card {
+    text-decoration: none;
+}
+
+.create-tour-card:hover {
+    cursor: pointer;
+    animation: fillColor 1s forwards;
+    text-decoration: none;
+}
+
+@keyframes fillColor {
+    from {
+        background-color: whitesmoke;
+        color: black;
+    }
+    to {
+        background-color: cornflowerblue;
+        color: white;
+    }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: "->";
+}

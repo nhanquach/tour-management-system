@@ -1,0 +1,50 @@
+﻿@using QuanLyTour.Models
+@model QuanLyTour.Models.Tour
+
+@{
+    /**/
+
+    ViewBag.Title = "CreateTour";
+    Layout = "~/Views/Admin/_Admin_layout.cshtml";
+}
+
+<h2>Create new tour</h2>
+<p>I will walk you through a few steps to create a new tour.</p>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">General Info</li>
+    <li class="breadcrumb-item">Add destinations</li>
+    <li class="breadcrumb-item">Add Tour Groups</li>
+    <li class="breadcrumb-item">Confirm</li>
+</ol>
+@using (Html.BeginForm("CreateNewTour", "Admin", FormMethod.Post, new { @class = "form-group" }))
+{
+    <div class="input-group">
+        <div class="input-group">
+            <span class="" id="basic-addon1">Tour ID</span>
+        </div>
+        @Html.EditorFor(model => model.TourID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="input-group">
+        <div class="input-group">
+            <span class="" id="basic-addon1">Tour Name</span>
+        </div>
+        @Html.EditorFor(model => model.TourName, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="input-group">
+        <div class="input-group">
+            <span class="" id="basic-addon1">Description</span>
+        </div>
+        @Html.TextArea("Description", null, new { @class = "form-control" })
+    </div>
+    <div class="input-group">
+        <div class="input-group">
+            <span class="" id="">Price</span>
+        </div>
+        @Html.EditorFor(model => model.TourPrice, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div>
+        <p class="has-error">@ViewBag.error</p>
+    </div>
+    <button type="submit" class="form-control btn btn-primary">Next step</button>
+}
+

@@ -15,10 +15,16 @@ namespace QuanLyTour.Controllers
     {
         private TourContext db = new TourContext();
 
+        public String viewLink(String view)
+        {
+            string defaultLink = "~/Views/Admin/Locations/";
+            return defaultLink + view;
+        }
+
         // GET: Locations
         public ActionResult Index()
         {
-            return View(db.Locations.ToList());
+            return View( viewLink("Index.cshtml"), db.Locations.ToList());
         }
 
         // GET: Locations/Details/5
@@ -33,13 +39,13 @@ namespace QuanLyTour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(location);
+            return View(viewLink("Details.cshtml"), location);
         }
 
         // GET: Locations/Create
         public ActionResult Create()
         {
-            return View();
+            return View(viewLink("Create.cshtml"));
         }
 
         // POST: Locations/Create
@@ -56,7 +62,7 @@ namespace QuanLyTour.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(location);
+            return View(viewLink("Create.cshtml"), location);
         }
 
         // GET: Locations/Edit/5
@@ -71,7 +77,7 @@ namespace QuanLyTour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(location);
+            return View(viewLink("Edit.cshtml"), location);
         }
 
         // POST: Locations/Edit/5
@@ -102,7 +108,7 @@ namespace QuanLyTour.Controllers
             {
                 return HttpNotFound();
             }
-            return View(location);
+            return View(viewLink("Edit.cshtml"), location);
         }
 
         // POST: Locations/Delete/5

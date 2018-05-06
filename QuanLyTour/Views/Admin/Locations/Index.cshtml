@@ -5,24 +5,24 @@
     Layout = "~/Views/Shared/_User_layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Available Locations</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new location", "Create", null, new { @class = "btn btn-outline-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LocationID)
+            Location ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationName)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationDescription)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            Country
         </th>
         <th></th>
     </tr>
@@ -35,16 +35,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.LocationName)
         </td>
-        <td>
+        <td class="text-truncate" style="max-width: 20rem;">
             @Html.DisplayFor(modelItem => item.LocationDescription)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-dark" })
+            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-info" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
         </td>
     </tr>
 }

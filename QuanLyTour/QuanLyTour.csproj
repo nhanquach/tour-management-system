@@ -267,11 +267,11 @@
     <Content Include="Views\Tours\Details.cshtml" />
     <Content Include="Views\Tours\Edit.cshtml" />
     <Content Include="Views\Tours\Index.cshtml" />
-    <Content Include="Views\Locations\Create.cshtml" />
-    <Content Include="Views\Locations\Delete.cshtml" />
-    <Content Include="Views\Locations\Details.cshtml" />
-    <Content Include="Views\Locations\Edit.cshtml" />
-    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Admin\Locations\Create.cshtml" />
+    <Content Include="Views\Admin\Locations\Delete.cshtml" />
+    <Content Include="Views\Admin\Locations\Details.cshtml" />
+    <Content Include="Views\Admin\Locations\Edit.cshtml" />
+    <Content Include="Views\Admin\Locations\Index.cshtml" />
     <Content Include="Views\Tours\Search.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
     <Content Include="Views\User\UserHome.cshtml" />
@@ -279,7 +279,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />
     <Content Include="Views\Admin\_Admin_layout.cshtml" />
-    <Content Include="Views\Admin\Locations.cshtml" />
+    <Content Include="Views\Admin\CreateTour.cshtml" />
+    <Content Include="Views\Admin\AddLocations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

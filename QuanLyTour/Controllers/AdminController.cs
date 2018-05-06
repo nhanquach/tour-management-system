@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyTour.Controllers.Utils;
+using QuanLyTour.Models;
 
 namespace QuanLyTour.Controllers
 {
@@ -26,7 +27,7 @@ namespace QuanLyTour.Controllers
                 if(username == "Admin" && MD5.Create(password) == "E3AFED0047B08059D0FADA10F400C1E5")
                 {
                     System.Diagnostics.Debug.WriteLine(MD5.Create("Admin"));
-                    return Home();
+                    return RedirectToAction("Home", "Admin");
                 }
                 else
                 {
@@ -45,9 +46,41 @@ namespace QuanLyTour.Controllers
             return View("Home");
         }
 
+        public ActionResult CreateTour()
+        {
+            return View();
+        }
+
+        public ActionResult AddLocations(string tourID)
+        {
+            System.Diagnostics.Debug.WriteLine("TOUR ID: ", tourID);
+            ViewBag.tourID = tourID;
+            return View(db.Locations.ToList());
+        }
+        
+        [HttpPost]
+        public ActionResult CreateNewTour(FormCollection formCollection, Tour tour)
+        {
+            string description = formCollection["Description"];
+            tour.TourDescription = description;
+
+            if (ModelState.IsValid)
+            {
+                db.Tours.Add(tour);
+                db.SaveChanges();
+                System.Diagnostics.Debug.WriteLine("TOUR ID: ", tour.TourID);
+                return RedirectToAction("AddLocations", "Admin", tour.TourID);
+            }
+            else
+            {
+                ViewBag.error = "Please fill in every field before sumit.";
+            }
+            return RedirectToAction("CreateTour", "Admin");
+        }
+
         public ActionResult Locations()
         {
-            return View(db.Locations.ToList());
+            return RedirectToAction("Index", "Locations");
         }
 
         public ActionResult Groups()

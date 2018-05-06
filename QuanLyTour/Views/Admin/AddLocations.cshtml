@@ -1,0 +1,22 @@
+﻿@model IEnumerable<QuanLyTour.Models.Location>
+
+@{
+    ViewBag.Title = "AddLocations";
+    Layout = "~/Views/Admin/_Admin_layout.cshtml";
+}
+
+<h2>Create new tour</h2>
+<p>I will walk you through a few steps to create a new tour.</p>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">General Info</li>
+    <li class="breadcrumb-item active">Add destinations</li>
+    <li class="breadcrumb-item">Add Tour Groups</li>
+    <li class="breadcrumb-item">Confirm</li>
+</ol>
+<h2>Add destinations to your tour @ViewBag.tourID</h2>
+
+@foreach(var item in Model)
+{
+    @Html.DisplayFor(modelItem => item.LocationName)
+}
+

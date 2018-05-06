@@ -1,0 +1,60 @@
+﻿@model QuanLyTour.Models.Location
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4 class="display-4">@Html.DisplayFor(model => model.LocationName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <h3>
+            @Html.DisplayNameFor(model => model.Country)
+        </h3>
+
+        <p>
+            @Html.DisplayFor(model => model.Country)
+        </p>
+        <h3>Info</h3>
+        <p>
+            @Html.DisplayFor(model => model.LocationDescription)
+        </p>
+        <h3>
+           Available tours 
+        </h3>
+        <dd>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Detail</th>
+                </tr>
+                @if (Model.TourDetails != null)
+                {
+                    foreach (var item in Model.TourDetails)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tour.TourName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tour.TourDescription)
+                    </td>
+                </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2" style="text-align:center;">No tour found for this location</td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-dark" })
+</p>

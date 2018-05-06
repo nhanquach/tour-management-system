@@ -2,11 +2,20 @@
     ViewBag.Title = "Admin home";
     Layout = "./_Admin_layout.cshtml";
 }
+
 <h3>
     Admin Control
 </h3>
-<div class="row" style="margin: 1rem;">
-    <div class="col-sm-12 card">
+<div class="row card-deck" style="margin: 1rem;">
+    <a href="@Url.Action("CreateTour","Admin")" class="col-sm-6 card create-tour-card">
+        <div class="text-center">
+            <p class="display-2">
+                +
+            </p>
+            <span class="lead">Create a tour</span>
+        </div>
+    </a>
+    <div class="col-sm-6 card">
         <div class="card-body">
             <div class="card-title">
                 <span class="display-4">Summary</span>
@@ -22,7 +31,7 @@
         </div>
     </div>
 </div>
-<div class="row card-deck">
+<div class="row card-group">
     <div class="col-md-3 card" >
         <div class="card-body">
             <h3 class="card-title">
