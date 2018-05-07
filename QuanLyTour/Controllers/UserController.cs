@@ -30,6 +30,7 @@ namespace QuanLyTour.Controllers
                     //Save log in session
                     Session["UserEmail"] = result.Email;
                     Session["UserName"] = result.Name;
+                    Session["UserID"] = result.ID;
                     return View("UserHome", result);
                 } else
                 {

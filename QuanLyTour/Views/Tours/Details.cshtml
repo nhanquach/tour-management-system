@@ -64,23 +64,31 @@
                 {
                     foreach (var item in Model.TourGroups)
                     {
-                    <tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LeaveDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReturnDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfPeople)
+                    </td>
+                    @if (Session["UserEmail"] != null){
+                <td>
+                    @Html.ActionLink("Book", "BookATour", new { groupId = item.ID, id = Model.TourID }, new { @class = "btn btn-outline-primary" })
+                </td>
+                    }
+                    else
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.ActionLink("Sign in to book", "SignIn", "User", null, new { @class = "nav-link" })
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LeaveDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ReturnDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NumberOfPeople)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Book", "Index", null, new { @class = "btn btn-outline-primary" })
-                        </td>
-                    </tr>
+                    }
+                </tr>
                 }
             }
             else

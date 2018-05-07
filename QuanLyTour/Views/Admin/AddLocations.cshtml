@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<QuanLyTour.Models.Location>
 
 @{
-    ViewBag.Title = "AddLocations";
-    Layout = "~/Views/Admin/_Admin_layout.cshtml";
+                /**/
+
+                ViewBag.Title = "AddLocations";
+                Layout = "~/Views/Admin/_Admin_layout.cshtml";
 }
 
 <h2>Create new tour</h2>
@@ -15,8 +17,13 @@
 </ol>
 <h2>Add destinations to your tour @ViewBag.tourID</h2>
 
-@foreach(var item in Model)
+@using (Html.BeginForm("AddLocations", "Admin", FormMethod.Post, new { @class = "form-group" }))
 {
-    @Html.DisplayFor(modelItem => item.LocationName)
+    foreach (var item in Model)
+    {
+        @Html.CheckBox(item.LocationName, new { value = item.LocationID });
+        <label>@item.LocationName</label>
+        <br />
+    }
+    <button type="submit" class="form-control btn btn-primary">Next step</button>
 }
-

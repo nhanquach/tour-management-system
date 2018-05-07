@@ -26,7 +26,6 @@ namespace QuanLyTour.Controllers
             {
                 if(username == "Admin" && MD5.Create(password) == "E3AFED0047B08059D0FADA10F400C1E5")
                 {
-                    System.Diagnostics.Debug.WriteLine(MD5.Create("Admin"));
                     return RedirectToAction("Home", "Admin");
                 }
                 else
@@ -53,11 +52,16 @@ namespace QuanLyTour.Controllers
 
         public ActionResult AddLocations(string tourID)
         {
-            System.Diagnostics.Debug.WriteLine("TOUR ID: ", tourID);
             ViewBag.tourID = tourID;
             return View(db.Locations.ToList());
         }
-        
+
+        [HttpPost]
+        public ActionResult AddLocations(Location location)
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult CreateNewTour(FormCollection formCollection, Tour tour)
         {
@@ -69,7 +73,7 @@ namespace QuanLyTour.Controllers
                 db.Tours.Add(tour);
                 db.SaveChanges();
                 System.Diagnostics.Debug.WriteLine("TOUR ID: ", tour.TourID);
-                return RedirectToAction("AddLocations", "Admin", tour.TourID);
+                return RedirectToAction("AddLocations", "Admin", new { tourID = tour.TourID});
             }
             else
             {

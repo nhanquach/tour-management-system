@@ -13,13 +13,13 @@ namespace QuanLyTour.Models
     public class Bill
     {
         public int ID { get; set; }
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
         public int TourGroupID { get; set; }
         public int TourID { get; set; }
-        public double TourPrice { get; set; }
+        public String TourPrice { get; set; }
 
         public BillStatus Status { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual User User { get; set; }
     }
 }

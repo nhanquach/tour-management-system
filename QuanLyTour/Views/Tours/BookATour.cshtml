@@ -1,0 +1,20 @@
+﻿@model QuanLyTour.Models.TourGroup
+
+@{
+    ViewBag.Title = "Book " + Model.Name;
+    Layout = "~/Views/Shared/_User_layout.cshtml";
+}
+
+<h1>Book this tour</h1>
+<h2 class="display-4">@Model.Name</h2>
+<p>Tour: @ViewBag.tour.TourName</p>
+<p>Price: $@ViewBag.tour.TourPrice</p>
+<p>Leave date: @Model.LeaveDate</p>
+<p>Return date: @Model.ReturnDate</p>
+<br />
+<h3>User info:</h3>
+<p>User name: @Session["UserName"].ToString()</p>
+<p>Email: @Session["UserEmail"].ToString()</p>
+<br />
+<p>Notes: You have to pay the fee for the next 7 days or your booking will be cancelled automatically.</p>
+@Html.ActionLink("Confirm booking", "ConfirmBooking", new { id = ViewBag.tour.TourID, groupId = Model.TourGroupID, userId = Session["UserID"] }, new { @class = "btn btn-primary" })
