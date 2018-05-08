@@ -1,0 +1,93 @@
+﻿@model QuanLyTour.Models.TourGroup
+
+@{
+    ViewBag.Title = "AddGroup";
+    Layout = "~/Views/Admin/_Admin_layout.cshtml";
+}
+
+<h2>Create new tour</h2>
+<p>I will walk you through a few steps to create a new tour.</p>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">General Info</li>
+    <li class="breadcrumb-item">Add destinations</li>
+    <li class="breadcrumb-item active">Add Tour Groups</li>
+    <li class="breadcrumb-item">Confirm</li>
+</ol>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label ">Tour group ID</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TourGroupID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TourGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label ">Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label ">Description</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label ">Leave Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LeaveDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.LeaveDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label ">Return Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TourID, "TourID", htmlAttributes: new { @class = "control-label " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TourID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @Value = ViewBag.tour.ID } })
+                @Html.ValidationMessageFor(model => model.TourID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label " })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label ">Number of people</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberOfPeople, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfPeople, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

@@ -12,6 +12,8 @@ namespace QuanLyTour.Controllers
     public class AdminController : Controller
     {
         private TourContext db = new TourContext();
+        public static Tour globalTour;
+
         // GET: Admin
         public ActionResult Index()
         {
@@ -45,21 +47,52 @@ namespace QuanLyTour.Controllers
             return View("Home");
         }
 
-        public ActionResult CreateTour()
+        public ActionResult AddGroup()
         {
+            ViewBag.tour = globalTour;
             return View();
         }
 
-        public ActionResult AddLocations(string tourID)
+        [HttpPost]
+        public ActionResult AddGroup(TourGroup tourGroup)
         {
-            ViewBag.tourID = tourID;
+            if (ModelState.IsValid)
+            {
+                db.TourGroups.Add(tourGroup);
+                db.SaveChanges();
+            }
+            return RedirectToAction("AddGroup", "Admin");
+        }
+
+        public ActionResult AddLocations()
+        {
+            ViewBag.TourName = globalTour.TourName;
             return View(db.Locations.ToList());
         }
 
         [HttpPost]
-        public ActionResult AddLocations(Array LocationName)
+        public ActionResult AddLocations(Array LocationID)
         {
-            System.Diagnostics.Debug.WriteLine("Location ", LocationName);
+            if (LocationID.Length > 0)
+            {
+                foreach (var item in LocationID)
+                {
+                    TourDetail tourDetail = new TourDetail
+                    {
+                        ID = globalTour.ID,
+                        LocationID = int.Parse(item.ToString()),
+                        TourID = globalTour.ID
+                    };
+                    db.TourDetails.Add(tourDetail);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("AddGroup", "Admin");
+            }
+            return RedirectToAction("AddLocations", "Admin");
+        }
+
+        public ActionResult CreateTour()
+        {
             return View();
         }
 
@@ -73,8 +106,9 @@ namespace QuanLyTour.Controllers
             {
                 db.Tours.Add(tour);
                 db.SaveChanges();
+                globalTour = tour;
                 System.Diagnostics.Debug.WriteLine("TOUR ID: ", tour.TourID);
-                return RedirectToAction("AddLocations", "Admin", new { tourID = tour.TourID});
+                return RedirectToAction("AddLocations", "Admin");
             }
             else
             {

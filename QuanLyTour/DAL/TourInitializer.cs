@@ -6,7 +6,7 @@ using System.Web;
 
 namespace QuanLyTour.DAL
 {
-    public class TourInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<TourContext>
+    public class TourInitializer : System.Data.Entity.DropCreateDatabaseAlways<TourContext>
     {
         protected override void Seed(TourContext context)
         {
@@ -24,22 +24,22 @@ namespace QuanLyTour.DAL
 
             var tours = new List<Tour>
             {
-                new Tour{TourID = 1, TourName = "London", TourDescription = "Tour to London", TourPrice = "12 000 000"},
-                new Tour{TourID = 2,TourName = "Tokyo", TourDescription = "Tour to Tokyo", TourPrice = "13 000 000"},
-                new Tour{TourID = 3,TourName = "Shanghai", TourDescription = "Tour to Shahai", TourPrice = "14 000 000"},
-                new Tour{TourID = 4,TourName = "HongKong", TourDescription = "Tour to HongKong", TourPrice = "1 000 000"}
+                new Tour{ID = 122 , TourID = 122, TourName = "London", TourDescription = "Tour to London", TourPrice = "12 000 000"},
+                new Tour{ID = 225, TourID = 225,TourName = "Tokyo", TourDescription = "Tour to Tokyo", TourPrice = "13 000 000"},
+                new Tour{ID = 333, TourID = 333,TourName = "Shanghai", TourDescription = "Tour to Shahai", TourPrice = "14 000 000"},
+                new Tour{ID = 400, TourID = 400,TourName = "HongKong", TourDescription = "Tour to HongKong", TourPrice = "1 000 000"}
             };
             tours.ForEach(tour => context.Tours.Add(tour));
 
             var tourDetail = new List<TourDetail>
             {
-                new TourDetail {TourID = 1, LocationID = 1},
-                new TourDetail {TourID = 1, LocationID = 2},
-                new TourDetail {TourID = 2, LocationID = 3},
-                new TourDetail {TourID = 3, LocationID = 1},
-                new TourDetail {TourID = 3, LocationID = 2},
-                new TourDetail {TourID = 3, LocationID = 3},
-                new TourDetail {TourID = 4, LocationID = 4},
+                new TourDetail {ID = 122, TourID = 122, LocationID = 1},
+                new TourDetail {ID = 122, TourID = 122, LocationID = 2},
+                new TourDetail {ID = 225, TourID = 225, LocationID = 3},
+                new TourDetail {ID = 333, TourID = 333, LocationID = 1},
+                new TourDetail {ID = 333, TourID = 333, LocationID = 2},
+                new TourDetail {ID = 333, TourID = 333, LocationID = 3},
+                new TourDetail {ID = 400, TourID = 400, LocationID = 4},
             };
             tourDetail.ForEach(d => context.TourDetails.Add(d));
             context.SaveChanges();
