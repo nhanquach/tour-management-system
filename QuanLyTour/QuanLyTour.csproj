@@ -282,6 +282,7 @@
     <Content Include="Views\Admin\CreateTour.cshtml" />
     <Content Include="Views\Admin\AddLocations.cshtml" />
     <Content Include="Views\Tours\BookATour.cshtml" />
+    <Content Include="Views\Admin\AddLocations2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

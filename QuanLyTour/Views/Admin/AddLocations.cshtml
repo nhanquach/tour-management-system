@@ -21,7 +21,7 @@
 {
     foreach (var item in Model)
     {
-        @Html.CheckBox(item.LocationName, new { value = item.LocationID });
+        <input type="checkbox" name="LocationName" value=@item.LocationName />
         <label>@item.LocationName</label>
         <br />
     }

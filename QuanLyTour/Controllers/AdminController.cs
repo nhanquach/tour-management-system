@@ -57,8 +57,9 @@ namespace QuanLyTour.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLocations(Location location)
+        public ActionResult AddLocations(Array LocationName)
         {
+            System.Diagnostics.Debug.WriteLine("Location ", LocationName);
             return View();
         }
 
