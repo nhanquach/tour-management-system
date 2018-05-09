@@ -24,13 +24,13 @@
                     <li class="nav-item">
                         @Html.ActionLink("Home", "Home", "Admin", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Tours", "Index", "Tours", null, new { @class = "nav-link" })
-                    </li>
                 </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="@Url.Action("CreateTour","Admin")" class="btn btn-primary">+ Add a tour</a>
+                </div>
             </div>
         </div>
-    </nav>
+</nav>
 
     <div class="container">
         @RenderBody()

@@ -79,7 +79,7 @@
                     </td>
                     @if (Session["UserEmail"] != null){
                 <td>
-                    @Html.ActionLink("Book", "BookATour", new { groupId = item.ID, id = Model.TourID }, new { @class = "btn btn-outline-primary" })
+                    @Html.ActionLink("Book", "BookATour", new { groupId = item.ID, id = Model.ID }, new { @class = "btn btn-outline-primary" })
                 </td>
                     }
                     else

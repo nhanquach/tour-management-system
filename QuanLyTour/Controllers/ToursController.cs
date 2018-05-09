@@ -72,13 +72,14 @@ namespace QuanLyTour.Controllers
 
         public void ConfirmBooking(int userId, int id, int groupId)
         {
-            var tour = db.Tours.Where(u => u.TourID.Equals(id)).FirstOrDefault();
+            var tour = db.Tours.Find(id);
 
             var bill = new Bill {
                 UserID = userId,
                 TourGroupID = groupId,
                 TourID = id,
-                TourPrice = tour.TourPrice.ToString() };
+                TourPrice = tour.TourPrice.ToString()
+            };
             db.Bills.Add(bill);
             db.SaveChanges();
             /*

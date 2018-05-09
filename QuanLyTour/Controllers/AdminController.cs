@@ -44,6 +44,9 @@ namespace QuanLyTour.Controllers
             ViewBag.numberOfTours = db.Tours.Count();
             ViewBag.numberOfGroups = db.TourGroups.Count();
             ViewBag.numberOfUsers = db.Users.Count();
+            ViewBag.pending = db.Bills.Where(b => b.Status == BillStatus.Pending).Count();
+            ViewBag.completed = db.Bills.Where(b => b.Status == BillStatus.Complete).Count();
+            ViewBag.cancelled = db.Bills.Where(b => b.Status == BillStatus.Cancel).Count();
             return View("Home");
         }
 
@@ -54,14 +57,27 @@ namespace QuanLyTour.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddGroup(TourGroup tourGroup)
+        public ActionResult Save(TourGroup tourGroup)
         {
+            tourGroup.TourID = globalTour.ID;
             if (ModelState.IsValid)
             {
                 db.TourGroups.Add(tourGroup);
                 db.SaveChanges();
             }
             return RedirectToAction("AddGroup", "Admin");
+        }
+
+        [HttpPost]
+        public ActionResult Finish(TourGroup tourGroup)
+        {
+            tourGroup.TourID = globalTour.ID;
+            if (ModelState.IsValid)
+            {
+                db.TourGroups.Add(tourGroup);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Home", "Admin");
         }
 
         public ActionResult AddLocations()
@@ -112,7 +128,7 @@ namespace QuanLyTour.Controllers
             }
             else
             {
-                ViewBag.error = "Please fill in every field before sumit.";
+                ViewBag.error = "Please fill in every field before submit.";
             }
             return RedirectToAction("CreateTour", "Admin");
         }
@@ -124,17 +140,22 @@ namespace QuanLyTour.Controllers
 
         public ActionResult Groups()
         {
-            return View(db.TourGroups.ToList());
+            return RedirectToAction("Index", "TourGroups");
         }
 
         public ActionResult Tours()
         {
-            return View(db.TourGroups.ToList());
+            return RedirectToAction("Index", "AdminTours");
         }
 
         public ActionResult Users()
         {
-            return View(db.Users.ToList());
+            return RedirectToAction("Index", "Users");
+        }
+
+        public ActionResult Bills()
+        {
+            return RedirectToAction("Index", "Bills");
         }
     }
 }

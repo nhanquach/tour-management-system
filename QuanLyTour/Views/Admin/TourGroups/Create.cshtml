@@ -1,27 +1,22 @@
 ﻿@model QuanLyTour.Models.TourGroup
 
 @{
-    ViewBag.Title = "AddGroup";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Admin/_Admin_layout.cshtml";
 }
 
-<h2>Create new tour</h2>
-<p>I will walk you through a few steps to create a new tour.</p>
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">General Info</li>
-    <li class="breadcrumb-item">Add destinations</li>
-    <li class="breadcrumb-item active">Add Tour Groups</li>
-    <li class="breadcrumb-item">Confirm</li>
-</ol>
+<h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
+        <h4>TourGroup</h4>
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label class="control-label ">Tour group ID</label>
+            @Html.LabelFor(model => model.TourGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TourGroupID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TourGroupID, "", new { @class = "text-danger" })
@@ -29,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label ">Name</label>
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -37,31 +32,39 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label ">Description</label>
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label ">Leave Date</label>
+            @Html.LabelFor(model => model.LeaveDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LeaveDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.EditorFor(model => model.LeaveDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LeaveDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label ">Return Date</label>
+            @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.TourID, "TourID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TourID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TourID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -69,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label ">Number of people</label>
+            @Html.LabelFor(model => model.NumberOfPeople, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOfPeople, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NumberOfPeople, "", new { @class = "text-danger" })
@@ -77,10 +80,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-sm-12">
-                <input type="submit" value="Save and add another" class="btn btn-primary" formaction="Save"/>
-                <input type="submit" value="Finish" class="btn btn-outline-primary" formaction="Finish"/>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

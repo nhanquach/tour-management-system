@@ -6,16 +6,8 @@
 <h3>
     Admin Control
 </h3>
-<div class="row card-deck" style="margin: 1rem;">
-    <a href="@Url.Action("CreateTour","Admin")" class="col-sm-6 card create-tour-card">
-        <div class="text-center">
-            <p class="display-2">
-                +
-            </p>
-            <span class="lead">Create a tour</span>
-        </div>
-    </a>
-    <div class="col-sm-6 card">
+<div class="row">
+    <div class="col-sm-12 card bg-light" style="margin-bottom: 1rem;">
         <div class="card-body">
             <div class="card-title">
                 <span class="display-4">Summary</span>
@@ -26,13 +18,20 @@
                     Number of Tours: <strong>@ViewBag.numberOfTours</strong>.<br />
                     Number of Groups: <strong>@ViewBag.numberOfGroups</strong>.<br />
                     Number of Users: <strong>@ViewBag.numberOfUsers</strong>.<br />
+                    Bills: 
+                    <ul>
+                        <li>PENDING: @ViewBag.pending</li>
+                        <li>COMPLETED: @ViewBag.completed</li>
+                        <li>CANCELED: @ViewBag.cancelled</li>
+                    </ul>
                 </p>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row card-group">
-    <div class="col-md-3 card" >
+    <div class="col-md-3 card">
         <div class="card-body">
             <h3 class="card-title">
                 Locations
@@ -43,7 +42,7 @@
             @Html.ActionLink("Access", "Locations", "Admin", new { @class = "btn btn-outline-primary" })
         </div>
     </div>
-    <div class="col-md-3 card" >
+    <div class="col-md-3 card">
         <div class="card-body">
             <h3 class="card-title">
                 Groups
@@ -51,7 +50,7 @@
             <p>
                 Add, Edit or Remove Groups of Tours.
             </p>
-            @Html.ActionLink("Access", "Locations", "Admin", new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Access", "Groups", "Admin", new { @class = "btn btn-outline-primary" })
         </div>
     </div>
     <div class="col-md-3 card">
@@ -62,7 +61,7 @@
             <p>
                 Add, Edit or Remove Tours.
             </p>
-            @Html.ActionLink("Access", "Details", null, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Access", "Tours", null, new { @class = "btn btn-outline-primary" })
         </div>
     </div>
     <div class="col-md-3 card">
@@ -73,7 +72,18 @@
             <p>
                 Users' Bill status and Information.
             </p>
-            @Html.ActionLink("Access", "Details", null, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Access", "Users", null, new { @class = "btn btn-outline-primary" })
+        </div>
+    </div>
+    <div class="col-md-3 card">
+        <div class="card-body">
+            <h3 class="card-title">
+                Bills
+            </h3>
+            <p>
+                Users' Bill status and Information.
+            </p>
+            @Html.ActionLink("Access", "Bills", null, new { @class = "btn btn-outline-primary" })
         </div>
     </div>
 </div>  

@@ -17,4 +17,4 @@
 <p>Email: @Session["UserEmail"].ToString()</p>
 <br />
 <p>Notes: You have to pay the fee for the next 7 days or your booking will be cancelled automatically.</p>
-@Html.ActionLink("Confirm booking", "ConfirmBooking", new { id = ViewBag.tour.TourID, groupId = Model.TourGroupID, userId = Session["UserID"] }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Confirm booking", "ConfirmBooking", new { id = ViewBag.tour.ID, groupId = Model.ID, userId = Session["UserID"] }, new { @class = "btn btn-primary" })

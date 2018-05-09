@@ -149,10 +149,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminToursController.cs" />
+    <Compile Include="Controllers\BillsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
+    <Compile Include="Controllers\TourGroupsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\Utils\MD5.cs" />
     <Compile Include="DAL\TourContext.cs" />
     <Compile Include="DAL\TourInitializer.cs" />
@@ -284,6 +288,26 @@
     <Content Include="Views\Tours\BookATour.cshtml" />
     <Content Include="Views\Admin\AddLocations2.cshtml" />
     <Content Include="Views\Admin\AddGroup.cshtml" />
+    <Content Include="Views\Admin\TourGroups\Create.cshtml" />
+    <Content Include="Views\Admin\TourGroups\Delete.cshtml" />
+    <Content Include="Views\Admin\TourGroups\Details.cshtml" />
+    <Content Include="Views\Admin\TourGroups\Edit.cshtml" />
+    <Content Include="Views\Admin\TourGroups\Index.cshtml" />
+    <Content Include="Views\Bills\Create.cshtml" />
+    <Content Include="Views\Bills\Delete.cshtml" />
+    <Content Include="Views\Bills\Details.cshtml" />
+    <Content Include="Views\Bills\Edit.cshtml" />
+    <Content Include="Views\Bills\Index.cshtml" />
+    <Content Include="Views\AdminTours\Create.cshtml" />
+    <Content Include="Views\AdminTours\Delete.cshtml" />
+    <Content Include="Views\AdminTours\Details.cshtml" />
+    <Content Include="Views\AdminTours\Edit.cshtml" />
+    <Content Include="Views\AdminTours\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

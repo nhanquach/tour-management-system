@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<QuanLyTour.Models.Tour>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tours";
     Layout = "~/Views/Shared/_User_layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
             <h3 class="card-title">
                 @Html.DisplayFor(modelItem => item.TourName)
             </h3>
-            <p>
+            <p class="text-truncate">
                 @Html.DisplayFor(modelItem => item.TourDescription)
                 <br />
                 Price: $@Html.DisplayFor(modelItem => item.TourPrice)
