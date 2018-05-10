@@ -26,12 +26,10 @@ namespace QuanLyTour.Controllers
 
                 if(result != null)
                 {
-                    //Sign In successfully
-                    //Save log in session
                     Session["UserEmail"] = result.Email;
                     Session["UserName"] = result.Name;
                     Session["UserID"] = result.ID;
-                    return View("UserHome", result);
+                    return RedirectToAction("Home");
                 } else
                 {
                     ViewBag.error = "Email or Password not match.";
@@ -44,9 +42,26 @@ namespace QuanLyTour.Controllers
         {
             if(Session["UserEmail"] != null && Session["UserName"] != null)
             {
-                return View("UserHome");
+                // Get all booked tours
+                int uId = int.Parse(Session["UserID"].ToString());
+                var bookedTours = (
+                    from bill in db.Bills
+                    join tour in db.Tours 
+                    on bill.ID equals tour.ID
+                    where bill.UserID == uId
+                    select new BookedTour
+                    {
+                        ID = tour.ID,
+                        Name = tour.TourName,
+                        Description = tour.TourDescription,
+                        Price = bill.TourPrice,
+                        Status = bill.Status
+                    });
+
+                ViewBag.bookedTours = bookedTours.ToList();
+                return View();
             }
-            return View("SignIn");
+            return RedirectToAction("SignIn");
         }
 
         public ActionResult LogOut()

@@ -164,6 +164,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\BookedTour.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Tour.cs" />
@@ -278,7 +279,7 @@
     <Content Include="Views\Admin\Locations\Index.cshtml" />
     <Content Include="Views\Tours\Search.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
-    <Content Include="Views\User\UserHome.cshtml" />
+    <Content Include="Views\User\Home.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />

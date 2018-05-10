@@ -6,8 +6,25 @@
 }
 
 
-<h4>Welcome, @Session["UserName"]</h4>
-
+<h4 class="display-3">Hi, @Session["UserName"]</h4>
+<p class="lead">Recently booked tours:</p>
+<div class="row card-columns">
+    @{ 
+        foreach(var item in ViewBag.bookedTours)
+        {
+        <div class="col-md-4 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@item.Name - Status: @item.Status</h4>
+                    <p class="lead">$@item.Price</p>
+                    <p class="text-truncate">@item.Description</p>
+                    @Html.ActionLink("Go to tour", "Details", "Tours", new { id = item.ID }, new { @class = "card-link" })
+                </div>
+            </div>
+        </div>    
+        }
+    }
+</div>
 @*<div>
         <h2>@Html.DisplayFor(model => model.Name)</h2>
         <h4>User Home</h4>
