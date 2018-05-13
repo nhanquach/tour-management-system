@@ -11,10 +11,31 @@
 <p>Price: $@ViewBag.tour.TourPrice</p>
 <p>Leave date: @Model.LeaveDate</p>
 <p>Return date: @Model.ReturnDate</p>
+<p>
+    Tickets:
+    @using (Html.BeginForm("selectNumberOfTicket", "Tours", FormMethod.Post))
+    {
+    <input type="text" name="id" value=@ViewBag.tour.ID hidden />
+    <input type="text" name="groupId" value=@Model.ID hidden />
+    <input type="text" name="userId" value=@Session["UserID"] hidden />
+    <select name="numberOfTicket">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+    <input type="submit" value="Confirm" class="btn btn-outline-primary" />
+    }
+</p>
 <br />
 <h3>User info:</h3>
 <p>User name: @Session["UserName"].ToString()</p>
 <p>Email: @Session["UserEmail"].ToString()</p>
 <br />
 <p>Notes: You have to pay the fee for the next 7 days or your booking will be cancelled automatically.</p>
-@Html.ActionLink("Confirm booking", "ConfirmBooking", new { id = ViewBag.tour.ID, groupId = Model.ID, userId = Session["UserID"] }, new { @class = "btn btn-primary" })

@@ -15,8 +15,16 @@
         <div class="col-md-4 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">@item.Name - Status: @item.Status</h4>
-                    <p class="lead">$@item.Price</p>
+                    <h4 class="card-title">
+                        <span class="badge badge-secondary">@item.NumberOfTickets ticket(s)</span>
+                        @item.Name
+                        <br />
+                        Status: @item.Status
+                    </h4>
+                    <p class="text-primary">Please confirm, checkout before @item.LeaveDate.AddDays(-7).ToShortDateString().</p>
+                    <p class="lead">$@String.Format("{0:C}", item.Price)</p>
+                    <p>Leave Date: @item.LeaveDate.ToShortDateString()</p>
+                    <p>Return Date: @item.ReturnDate.ToShortDateString()</p>
                     <p class="text-truncate">@item.Description</p>
                     @Html.ActionLink("Go to tour", "Details", "Tours", new { id = item.ID }, new { @class = "card-link" })
                 </div>

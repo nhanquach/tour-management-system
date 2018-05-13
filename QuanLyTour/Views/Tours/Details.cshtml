@@ -57,7 +57,7 @@
                     <th>Name</th>
                     <th>Leave day</th>
                     <th>Return day</th>
-                    <th>Number of People</th>
+                    <th>Seats available</th>
                     <th></th>
                 </tr>
                 @if (Model.TourGroups.Count > 0)
@@ -69,24 +69,34 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LeaveDate)
+                        @{
+                            var ShortLeaveDate = item.LeaveDate.ToShortDateString();
+                            @ShortLeaveDate;
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ReturnDate)
+                        @{ 
+                            var ShortReturnDate = item.ReturnDate.ToShortDateString();
+                            @ShortReturnDate;
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberOfPeople)
                     </td>
-                    @if (Session["UserEmail"] != null){
-                <td>
-                    @Html.ActionLink("Book", "BookATour", new { groupId = item.ID, id = Model.ID }, new { @class = "btn btn-outline-primary" })
-                </td>
-                    }
-                    else
+                    @if (item.NumberOfPeople > 0)
                     {
+                        if (Session["UserEmail"] != null)
+                        {
+                        <td>
+                            @Html.ActionLink("Book", "BookATour", new { groupId = item.ID, id = Model.ID }, new { @class = "btn btn-outline-primary" })
+                        </td>
+                        }
+                        else
+                        {
                         <td>
                             @Html.ActionLink("Sign in to book", "SignIn", "User", null, new { @class = "nav-link" })
                         </td>
+                        }
                     }
                 </tr>
                 }

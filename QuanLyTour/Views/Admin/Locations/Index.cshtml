@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_User_layout.cshtml";
+    Layout = "~/Views/Admin/_Admin_layout.cshtml";
 }
 
 <h2>Available Locations</h2>
@@ -32,7 +32,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.LocationID)
         </td>
-        <td>
+        <td class="text-truncate" style="max-width: 20rem;">
             @Html.DisplayFor(modelItem => item.LocationName)
         </td>
         <td class="text-truncate" style="max-width: 20rem;">

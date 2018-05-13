@@ -44,19 +44,24 @@ namespace QuanLyTour.Controllers
             {
                 // Get all booked tours
                 int uId = int.Parse(Session["UserID"].ToString());
+                
                 var bookedTours = (
-                    from bill in db.Bills
-                    join tour in db.Tours 
-                    on bill.ID equals tour.ID
-                    where bill.UserID == uId
+                    from bills in db.Bills
+                    join tours in db.Tours
+                    on bills.TourID equals tours.ID
+                    join grs in db.TourGroups
+                    on tours.ID equals grs.TourID
+                    where uId == bills.UserID
                     select new BookedTour
                     {
-                        ID = tour.ID,
-                        Name = tour.TourName,
-                        Description = tour.TourDescription,
-                        Price = bill.TourPrice,
-                        Status = bill.Status
-                    });
+                        ID = tours.ID,
+                        Name = tours.TourName,
+                        Price = bills.TourPrice,
+                        Status = bills.Status,
+                        LeaveDate = grs.LeaveDate,
+                        ReturnDate = grs.ReturnDate,
+                        NumberOfTickets = bills.NumberOfTicket,
+                    }).Distinct();
 
                 ViewBag.bookedTours = bookedTours.ToList();
                 return View();

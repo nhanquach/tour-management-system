@@ -12,6 +12,9 @@ namespace QuanLyTour.Models
         public string Description { get; set; }
         public string Price { get; set; }
         public int TourID { get; set; }
+        public int NumberOfTickets { get; set; }
+        public DateTime LeaveDate { get; set; }
+        public DateTime ReturnDate { get; set; }
         public BillStatus Status { get; set; }
     }
 }
