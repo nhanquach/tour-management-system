@@ -28,8 +28,19 @@ namespace QuanLyTour.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Tour tour = db.Tours.Find(id);
-            //var tourDetail = (from d in db.TourDetails where d.TourID.Equals(tour.TourID) select d).ToList(); 
+
+            var ListOfGroup = db.TourGroups.Where(g => g.TourID == id).ToArray();
+            
+            for(var i = 0; i < ListOfGroup.Length; i++)
+            {
+                var groupId = ListOfGroup[i].ID;
+                var Seats = ListOfGroup[i].NumberOfPeople;
+                var BookedSeats = db.Bills.Where(b => b.TourGroupID == groupId).Count();
+                ListOfGroup[i].NumberOfPeople = Seats - BookedSeats;
+            }
+                    
             if (tour == null)
             {
                 return HttpNotFound();
@@ -70,7 +81,7 @@ namespace QuanLyTour.Controllers
             return View(tourGroup);
         }
 
-        public void ConfirmBooking(int userId, int id, int groupId)
+        public ActionResult ConfirmBooking(int userId, int id, int groupId)
         {
             var tour = db.Tours.Find(id);
 
@@ -82,15 +93,16 @@ namespace QuanLyTour.Controllers
             };
             db.Bills.Add(bill);
             db.SaveChanges();
-            /*
-             public int ID { get; set; }
-        public int CustomerID { get; set; }
-        public int TourGroupID { get; set; }
-        public int TourID { get; set; }
-        public String TourPrice { get; set; }
-        db.Tours.Add(tour);
-             */
+            return RedirectToAction("Booked", bill);
+        }
 
+        public ActionResult Booked(Bill bill)
+        {
+            var tour = db.Tours.Find(bill.TourID);
+            var tourGroup = db.TourGroups.Find(bill.TourGroupID);
+            ViewBag.Tour = tour;
+            ViewBag.TourGroup = tourGroup;
+            return View();
         }
     }
 }
