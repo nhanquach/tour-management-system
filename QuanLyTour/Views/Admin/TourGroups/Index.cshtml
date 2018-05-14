@@ -5,36 +5,30 @@
     Layout = "~/Views/Admin/_Admin_layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Tour Groups</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tour.TourName)
+            Tour
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TourGroupID)
+            Group name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Leave date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Return date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LeaveDate)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfPeople)
+            Number of people
         </th>
         <th></th>
     </tr>
@@ -45,19 +39,13 @@
             @Html.DisplayFor(modelItem => item.Tour.TourName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TourGroupID)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td class="text-truncate" style="max-width: 20rem;">
-            @Html.DisplayFor(modelItem => item.Description)
+        <td>
+            @item.LeaveDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LeaveDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnDate)
+            @item.ReturnDate.ToShortDateString()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
@@ -66,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.NumberOfPeople)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class="btn btn-outline-success" })
+            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "btn btn-outline-info" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "btn btn-outline-danger" })
         </td>
     </tr>
 }

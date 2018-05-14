@@ -49,7 +49,7 @@ namespace QuanLyTour.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,Status")] Bill bill)
+        public ActionResult Create([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,NumberOfTicket,Status")] Bill bill)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace QuanLyTour.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,Status")] Bill bill)
+        public ActionResult Edit([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,NumberOfTicket,Status")] Bill bill)
         {
             if (ModelState.IsValid)
             {

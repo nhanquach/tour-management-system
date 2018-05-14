@@ -22,7 +22,13 @@
                         Status: @item.Status
                     </h4>
                     <p class="text-primary">Please confirm, checkout before @item.LeaveDate.AddDays(-7).ToShortDateString().</p>
-                    <p class="lead">$@String.Format("{0:C}", item.Price)</p>
+                    <p class="lead">
+                        @{
+                    var totalMoney = (double.Parse(item.Price));
+                    var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+                    }
+                @Money
+                    </p>
                     <p>Leave Date: @item.LeaveDate.ToShortDateString()</p>
                     <p>Return Date: @item.ReturnDate.ToShortDateString()</p>
                     <p class="text-truncate">@item.Description</p>

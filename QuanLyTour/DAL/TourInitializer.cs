@@ -24,10 +24,10 @@ namespace QuanLyTour.DAL
 
             var tours = new List<Tour>
             {
-                new Tour{ID = 122 , TourID = 122, TourName = "London", TourDescription = "Tour to London", TourPrice = "12 000 000"},
-                new Tour{ID = 225, TourID = 225,TourName = "Tokyo", TourDescription = "Tour to Tokyo", TourPrice = "13 000 000"},
-                new Tour{ID = 333, TourID = 333,TourName = "Shanghai", TourDescription = "Tour to Shahai", TourPrice = "14 000 000"},
-                new Tour{ID = 400, TourID = 400,TourName = "HongKong", TourDescription = "Tour to HongKong", TourPrice = "1 000 000"}
+                new Tour{ID = 122 , TourID = 122, TourName = "London", TourDescription = "Tour to London", TourPrice = "12000000"},
+                new Tour{ID = 225, TourID = 225,TourName = "Tokyo", TourDescription = "Tour to Tokyo", TourPrice = "13000000"},
+                new Tour{ID = 333, TourID = 333,TourName = "Shanghai", TourDescription = "Tour to Shahai", TourPrice = "14000000"},
+                new Tour{ID = 400, TourID = 400,TourName = "HongKong", TourDescription = "Tour to HongKong", TourPrice = "1000000"}
             };
             tours.ForEach(tour => context.Tours.Add(tour));
 

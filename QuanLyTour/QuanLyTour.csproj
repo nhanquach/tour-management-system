@@ -293,11 +293,11 @@
     <Content Include="Views\Admin\TourGroups\Details.cshtml" />
     <Content Include="Views\Admin\TourGroups\Edit.cshtml" />
     <Content Include="Views\Admin\TourGroups\Index.cshtml" />
-    <Content Include="Views\Bills\Create.cshtml" />
-    <Content Include="Views\Bills\Delete.cshtml" />
-    <Content Include="Views\Bills\Details.cshtml" />
-    <Content Include="Views\Bills\Edit.cshtml" />
-    <Content Include="Views\Bills\Index.cshtml" />
+    <Content Include="Views\Bills2\Create.cshtml" />
+    <Content Include="Views\Bills2\Delete.cshtml" />
+    <Content Include="Views\Bills2\Details.cshtml" />
+    <Content Include="Views\Bills2\Edit.cshtml" />
+    <Content Include="Views\Bills2\Index.cshtml" />
     <Content Include="Views\AdminTours\Create.cshtml" />
     <Content Include="Views\AdminTours\Delete.cshtml" />
     <Content Include="Views\AdminTours\Details.cshtml" />
@@ -309,6 +309,11 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Tours\Booked.cshtml" />
+    <Content Include="Views\Bills\Create.cshtml" />
+    <Content Include="Views\Bills\Delete.cshtml" />
+    <Content Include="Views\Bills\Details.cshtml" />
+    <Content Include="Views\Bills\Edit.cshtml" />
+    <Content Include="Views\Bills\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

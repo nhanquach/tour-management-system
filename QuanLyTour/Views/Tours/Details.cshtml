@@ -12,7 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <h3>
-            Price: $@Html.DisplayFor(model => model.TourPrice)
+            Price: @{
+        var totalMoney = (double.Parse(Model.TourPrice));
+        var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+            }
+            @Money
         </h3>
         <h3>Info</h3>
         <p>

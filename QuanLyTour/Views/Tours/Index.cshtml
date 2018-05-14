@@ -17,7 +17,11 @@
             <p class="text-truncate">
                 @Html.DisplayFor(modelItem => item.TourDescription)
                 <br />
-                Price: $@Html.DisplayFor(modelItem => item.TourPrice)
+                Price:@{
+                    var totalMoney = (double.Parse(item.TourPrice));
+                    var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+                    }
+                @Money
             </p>
             @Html.ActionLink("Take a look", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
         </div>
