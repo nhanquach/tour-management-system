@@ -8,7 +8,13 @@
 <h1>Book this tour</h1>
 <h2 class="display-4">@Model.Name</h2>
 <p>Tour: @ViewBag.tour.TourName</p>
-<p>Price: $@ViewBag.tour.TourPrice</p>
+<p>
+    Price per ticket:  @{
+        var totalMoney = (double.Parse(ViewBag.tour.TourPrice));
+        var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+    }
+    @Money
+</p>
 <p>Leave date: @Model.LeaveDate</p>
 <p>Return date: @Model.ReturnDate</p>
 <p>
@@ -18,19 +24,21 @@
     <input type="text" name="id" value=@ViewBag.tour.ID hidden />
     <input type="text" name="groupId" value=@Model.ID hidden />
     <input type="text" name="userId" value=@Session["UserID"] hidden />
-    <select name="numberOfTicket">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-    <input type="submit" value="Confirm" class="btn btn-outline-primary" />
+    <div class="row">
+        <select name="numberOfTicket" class="form-control col-md-4">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <input type="submit" value="Confirm" class="btn btn-info col-md-1" />
+    </div>
     }
 </p>
 <br />

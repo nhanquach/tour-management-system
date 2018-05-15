@@ -37,6 +37,18 @@
         </div>
         <div class="input-group">
             <div class="input-group">
+                <span class="" id="basic-addon1">Address</span>
+            </div>
+            @Html.TextBox("Address", null, new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            <div class="input-group">
+                <span class="" id="basic-addon1">Phone</span>
+            </div>
+            @Html.TextBox("PhoneNumber", null, new { @class = "form-control" })
+        </div>
+        <div class="input-group">
+            <div class="input-group">
                 <span class="" id="basic-addon1">Email</span>
             </div>
             @Html.TextBox("Email", null, new { @type = "email", @class = "form-control" })

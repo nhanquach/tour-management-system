@@ -6,10 +6,19 @@
 }
 
 <h2>Tour Groups</h2>
+<div style="display: flex; margin-bottom: 2rem">
+    <div style="flex: 1">
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @Html.TextBox("q", null, new { @class = "form-control mr-sm-2" })
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Find groups</button>
+        }
+    </div>
+    <div style="">
+        @Html.ActionLink("New group", "Create", null, new { @class = "btn btn-outline-primary" })
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
-</p>
 <table class="table">
     <tr>
         <th>

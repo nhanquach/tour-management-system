@@ -22,7 +22,7 @@
     foreach (var item in Model)
     {
         <input type="checkbox" name="ID" value=@item.ID />
-        <label>@item.LocationName</label>
+        <label>@item.LocationName (@item.Country)</label>
         <br />
     }
     <button type="submit" class="form-control btn btn-primary">Next step</button>

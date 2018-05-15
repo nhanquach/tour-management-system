@@ -15,10 +15,19 @@ namespace QuanLyTour.Controllers
     {
         private TourContext db = new TourContext();
 
-        // GET: Users
-        public ActionResult Index()
+        public ActionResult Index(String q)
         {
-            return View(db.Users.ToList());
+            var users = from u in db.Users select u;
+            if (!String.IsNullOrEmpty(q))
+            {
+                var query = q.ToUpper();
+                users = db.Users.Where(
+                    u => u.Name.ToUpper().Contains(query) 
+                    || u.Email.ToUpper().Contains(query) 
+                    || u.Address.ToUpper().Contains(query)
+                    );
+            }
+            return View(users.ToList());
         }
 
         // GET: Users/Details/5
@@ -36,15 +45,11 @@ namespace QuanLyTour.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Email,Password,Address,Gender,PhoneNumber")] User user)
@@ -59,7 +64,6 @@ namespace QuanLyTour.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,9 +78,6 @@ namespace QuanLyTour.Controllers
             return View(user);
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Email,Password,Address,Gender,PhoneNumber")] User user)
@@ -105,7 +106,6 @@ namespace QuanLyTour.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

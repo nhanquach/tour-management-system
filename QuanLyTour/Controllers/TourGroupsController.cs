@@ -21,13 +21,24 @@ namespace QuanLyTour.Controllers
         }
 
         // GET: TourGroups
-        public ActionResult Index()
+        public ActionResult Index(String q)
         {
-            var tourGroups = db.TourGroups.Include(t => t.Tour);
+            //var tourGroups = db.TourGroups.Include(t => t.Tour);
+            var tourGroups = from t in db.TourGroups select t;
+            if (!String.IsNullOrEmpty(q))
+            {
+                var query = q.ToUpper();
+                tourGroups = db.TourGroups.Where(
+                    t => t.Name.ToUpper().Contains(query)
+                || t.Tour.TourName.ToUpper().Contains(query)
+                || t.LeaveDate.ToString().Contains(query)
+                || t.Status.ToString().ToUpper().Contains(query) 
+                || t.NumberOfPeople.ToString().Contains(query)
+                );
+            }
             return View(viewLink("Index.cshtml"), tourGroups.ToList());
         }
 
-        // GET: TourGroups/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,16 +53,12 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Details.cshtml"), tourGroup);
         }
 
-        // GET: TourGroups/Create
         public ActionResult Create()
         {
             ViewBag.TourID = new SelectList(db.Tours, "ID", "TourName");
             return View(viewLink("Create.cshtml"));
         }
 
-        // POST: TourGroups/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,TourGroupID,Name,Description,LeaveDate,ReturnDate,TourID,Status,NumberOfPeople")] TourGroup tourGroup)
@@ -60,14 +67,13 @@ namespace QuanLyTour.Controllers
             {
                 db.TourGroups.Add(tourGroup);
                 db.SaveChanges();
-                return RedirectToAction(viewLink("Index.cshtml"));
+                return RedirectToAction("Index");
             }
 
             ViewBag.TourID = new SelectList(db.Tours, "ID", "TourName", tourGroup.TourID);
             return View(viewLink("Create.cshtml"), tourGroup);
         }
 
-        // GET: TourGroups/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,10 +89,6 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Edit.cshtml"), tourGroup);
         }
 
-        // POST: TourGroups/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,TourGroupID,Name,Description,LeaveDate,ReturnDate,TourID,Status,NumberOfPeople")] TourGroup tourGroup)
         {
@@ -100,7 +102,6 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Edit.cshtml"), tourGroup);
         }
 
-        // GET: TourGroups/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +116,6 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Delete.cshtml"), tourGroup);
         }
 
-        // POST: TourGroups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

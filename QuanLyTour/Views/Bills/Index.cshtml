@@ -8,10 +8,15 @@
 }
 
 <h2>Bills</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
-</p>
+<div style="display: flex; margin-bottom: 2rem">
+    <div style="flex: 1">
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @Html.TextBox("q", null, new { @class = "form-control mr-sm-2" })
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Find bills</button>
+        }
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>

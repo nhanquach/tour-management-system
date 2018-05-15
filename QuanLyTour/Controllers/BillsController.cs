@@ -15,14 +15,17 @@ namespace QuanLyTour.Controllers
     {
         private TourContext db = new TourContext();
 
-        // GET: Bills
-        public ActionResult Index()
+        public ActionResult Index(string q)
         {
-            var bills = db.Bills.Include(b => b.User);
+            var bills = from b in db.Bills select b;
+            if (!String.IsNullOrEmpty(q))
+            {
+                var query = q.ToUpper();
+                bills = db.Bills.Where(b => b.User.Name.Contains(query));
+            }
             return View(bills.ToList());
         }
 
-        // GET: Bills/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,32 +40,6 @@ namespace QuanLyTour.Controllers
             return View(bill);
         }
 
-        // GET: Bills/Create
-        public ActionResult Create()
-        {
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name");
-            return View();
-        }
-
-        // POST: Bills/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,NumberOfTicket,Status")] Bill bill)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Bills.Add(bill);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.UserID = new SelectList(db.Users, "ID", "Name", bill.UserID);
-            return View(bill);
-        }
-
-        // GET: Bills/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,10 +54,7 @@ namespace QuanLyTour.Controllers
             ViewBag.UserID = new SelectList(db.Users, "ID", "Name", bill.UserID);
             return View(bill);
         }
-
-        // POST: Bills/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,UserID,TourGroupID,TourID,TourPrice,NumberOfTicket,Status")] Bill bill)
@@ -95,7 +69,6 @@ namespace QuanLyTour.Controllers
             return View(bill);
         }
 
-        // GET: Bills/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +83,6 @@ namespace QuanLyTour.Controllers
             return View(bill);
         }
 
-        // POST: Bills/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

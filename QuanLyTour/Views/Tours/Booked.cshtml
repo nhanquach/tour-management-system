@@ -4,16 +4,24 @@
     Layout = "~/Views/Shared/_User_layout.cshtml";
 }
 
-<h2 class="display-4">Yay!</h2>
 <p class="lead">Book tour successfully</p>
-<h3>Brief detail</h3>
-<p>Tour name: @ViewBag.Tour.TourName</p>
-<p>Tour description: @ViewBag.Tour.TourDescription</p>
-<p>Group: @ViewBag.tourGroup.Name</p>
-<p>Leave Date: @ViewBag.tourGroup.LeaveDate</p>
-<p>Return Date: @ViewBag.tourGroup.ReturnDate</p>
-<p>Price: $@ViewBag.Tour.TourPrice</p>
-<div>
-    @Html.ActionLink("Show all booked tours", "AllBookedTours", null, new { @class = "btn btn-outline-primary" })
-    @Html.ActionLink("Show all tours", "Index", "Tours", new { @class = "btn btn-outline-dark" })
+<div class="card card-body">
+    <h2 class="card-title display-4 text-success">Success</h2>
+    <h3>Brief detail</h3>
+    <p>Tour name: @ViewBag.Tour.TourName</p>
+    <p>Tour description: @ViewBag.Tour.TourDescription</p>
+    <p>Group: @ViewBag.tourGroup.Name</p>
+    <p>Leave Date: @ViewBag.tourGroup.LeaveDate</p>
+    <p>Return Date: @ViewBag.tourGroup.ReturnDate</p>
+    <p>
+        Price: @{
+            var totalMoney = (double.Parse(ViewBag.Tour.TourPrice));
+            var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+        }
+        @Money
+    </p>
+    <div>
+        @Html.ActionLink("Show all booked tours", "AllBookedTours", null, new { @class = "btn btn-outline-primary" })
+        @Html.ActionLink("Show all tours", "Index", "Tours", new { @class = "btn btn-outline-dark" })
+    </div>
 </div>

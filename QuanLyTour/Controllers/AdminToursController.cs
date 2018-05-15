@@ -16,9 +16,21 @@ namespace QuanLyTour.Controllers
         private TourContext db = new TourContext();
 
         // GET: AdminTours
-        public ActionResult Index()
+        public ActionResult Index(String q)
         {
-            return View(db.Tours.ToList());
+            var tours = from t in db.Tours select t;
+            if (!String.IsNullOrEmpty(q))
+            {
+                var query = q.ToUpper();
+                tours = db.Tours.Where(
+                    t => t.TourName.ToUpper().Contains(query) 
+                    || t.TourDescription.ToUpper().Contains(query) 
+                    || t.TourPrice.ToString().Contains(query)
+                    || t.ID.ToString().Contains(query)
+                    || t.TourID.ToString().Contains(query)
+                    );
+            }
+            return View(tours.ToList());
         }
 
         // GET: AdminTours/Details/5

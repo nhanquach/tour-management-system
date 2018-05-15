@@ -21,13 +21,20 @@ namespace QuanLyTour.Controllers
             return defaultLink + view;
         }
 
-        // GET: Locations
-        public ActionResult Index()
+        public ActionResult Index(string q)
         {
-            return View( viewLink("Index.cshtml"), db.Locations.ToList());
+            var locations = from l in db.Locations select l;
+            if (!String.IsNullOrEmpty(q))
+            {
+                var query = q.ToUpper();
+                locations = db.Locations.Where(
+                    l => l.LocationName.ToUpper().Contains(query) 
+                    || l.LocationDescription.ToUpper().Contains(query)
+                    );
+            }
+            return View( viewLink("Index.cshtml"), locations.ToList());
         }
 
-        // GET: Locations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,15 +49,11 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Details.cshtml"), location);
         }
 
-        // GET: Locations/Create
         public ActionResult Create()
         {
             return View(viewLink("Create.cshtml"));
         }
-
-        // POST: Locations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,LocationID,LocationName,LocationDescription,Country")] Location location)
@@ -65,7 +68,6 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Create.cshtml"), location);
         }
 
-        // GET: Locations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,10 +81,7 @@ namespace QuanLyTour.Controllers
             }
             return View(viewLink("Edit.cshtml"), location);
         }
-
-        // POST: Locations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,LocationID,LocationName,LocationDescription,Country")] Location location)
@@ -96,7 +95,6 @@ namespace QuanLyTour.Controllers
             return View(location);
         }
 
-        // GET: Locations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +109,6 @@ namespace QuanLyTour.Controllers
             return View(viewLink("Edit.cshtml"), location);
         }
 
-        // POST: Locations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -14,7 +14,6 @@ namespace QuanLyTour.Controllers
         private TourContext db = new TourContext();
         public static Tour globalTour;
 
-        // GET: Admin
         public ActionResult Index()
         {
             return View();

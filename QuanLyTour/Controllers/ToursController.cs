@@ -15,13 +15,11 @@ namespace QuanLyTour.Controllers
     {
         private TourContext db = new TourContext();
 
-        // GET: Tours
         public ActionResult Index()
         {
             return View(db.Tours.ToList());
         }
 
-        // GET: Tours/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)

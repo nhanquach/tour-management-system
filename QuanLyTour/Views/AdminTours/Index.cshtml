@@ -6,7 +6,15 @@
 }
 
 <h2>Tours</h2>
-
+<div style="display: flex; margin-bottom: 2rem">
+    <div style="flex: 1">
+        @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @Html.TextBox("q", null, new { @class = "form-control mr-sm-2" })
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Find tours</button>
+        }
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>

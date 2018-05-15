@@ -52,6 +52,7 @@ namespace QuanLyTour.Controllers
                     join grs in db.TourGroups
                     on bills.TourGroupID equals grs.ID
                     where uId == bills.UserID
+                    orderby grs.LeaveDate
                     select new BookedTour
                     {
                         ID = tours.ID,
