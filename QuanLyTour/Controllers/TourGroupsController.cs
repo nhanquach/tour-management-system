@@ -94,7 +94,7 @@ namespace QuanLyTour.Controllers
             {
                 db.Entry(tourGroup).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(viewLink("Index.cshtml"));
+                return RedirectToAction("Index");
             }
             ViewBag.TourID = new SelectList(db.Tours, "ID", "TourName", tourGroup.TourID);
             return View(viewLink("Edit.cshtml"), tourGroup);
@@ -123,7 +123,7 @@ namespace QuanLyTour.Controllers
             TourGroup tourGroup = db.TourGroups.Find(id);
             db.TourGroups.Remove(tourGroup);
             db.SaveChanges();
-            return RedirectToAction(viewLink("Index.cshtml"));
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -13,7 +13,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TourID)
+            ID
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TourName)
+            Name
         </dt>
 
         <dd>
@@ -29,15 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TourDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourPrice)
+            Price
         </dt>
 
         <dd>
@@ -50,8 +42,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
         </div>
     }
 </div>

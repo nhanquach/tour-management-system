@@ -11,63 +11,49 @@
 <div>
     <h4>Bill</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Name)
-        </dt>
+    <div class="card card-body">
+        <p class="card-text lead">
+            User: <strong>@Html.DisplayFor(model => model.User.Name)</strong>
+        </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.Name)
-        </dd>
+        <p class="card-text">
+            Group ID: <strong>@Html.DisplayFor(model => model.TourGroupID)</strong>
+        </p>
+        <p class="card-text">
+            Tour ID: <strong>@Html.DisplayFor(model => model.TourGroupID)</strong>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TourGroupID)
-        </dt>
+        <p class="card-text">
+            Tour Price @{
+            var TourPrice = (double.Parse(Model.TourPrice));
+            var Price = TourPrice.ToString("C", new System.Globalization.CultureInfo("en-US"));
+            }
+            <strong>@Price</strong>
+        </p>
+        <p class="card-text">
+            Number of tickets: <strong>@Html.DisplayFor(model => model.NumberOfTicket)</strong>
+        </p>
+        <p class="card-text">
+            Have to pay: @{
+            var totalMoney = (double.Parse(Model.TourPrice) * Model.NumberOfTicket);
+            var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+            }
+            <strong>@Money</strong>
+        </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.TourGroupID)
-        </dd>
+        <p class="card-text">
+            Bill status: <strong>@Html.DisplayFor(model => model.Status)</strong>
+        </p>
+        <div class="card-action">
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TourID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfTicket)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfTicket)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-primary"})
+                </div>
+            }
         </div>
-    }
+    </div>
+
 </div>

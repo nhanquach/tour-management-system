@@ -10,74 +10,18 @@
 <div>
     <h4>TourGroup</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Tour.TourName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tour.TourName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourGroupID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourGroupID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LeaveDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LeaveDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReturnDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfPeople)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfPeople)
-        </dd>
-
-    </dl>
+    <div class="card card-body">
+        <p class="card-title display-4">@Html.DisplayFor(model => model.Tour.TourName)</p>
+        <p>Group ID: <strong>@Html.DisplayFor(model => model.TourGroupID)</strong></p>
+        <p>Name: <strong>@Html.DisplayFor(model => model.Name)</strong></p>
+        <p>Description: <strong>@Html.DisplayFor(model => model.Description)</strong></p>
+        <p>Leave Date: <strong>@Html.DisplayFor(model => model.LeaveDate)</strong></p>
+        <p>Return Date: <strong>@Html.DisplayFor(model => model.ReturnDate)</strong></p>
+        <p>Status:  <strong>@Html.DisplayFor(model => model.Status)</strong></p>
+        <p>Number of people:  <strong>@Html.DisplayFor(model => model.NumberOfPeople)</strong></p>
+        <div class="card-action">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class="btn btn-outline-success" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-primary" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

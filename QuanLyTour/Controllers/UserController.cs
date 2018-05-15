@@ -50,7 +50,7 @@ namespace QuanLyTour.Controllers
                     join tours in db.Tours
                     on bills.TourID equals tours.ID
                     join grs in db.TourGroups
-                    on tours.ID equals grs.TourID
+                    on bills.TourGroupID equals grs.ID
                     where uId == bills.UserID
                     select new BookedTour
                     {
@@ -61,9 +61,9 @@ namespace QuanLyTour.Controllers
                         LeaveDate = grs.LeaveDate,
                         ReturnDate = grs.ReturnDate,
                         NumberOfTickets = bills.NumberOfTicket,
-                    }).Distinct();
+                    }).Distinct().ToList();
 
-                ViewBag.bookedTours = bookedTours.ToList();
+                ViewBag.bookedTours = bookedTours;
                 return View();
             }
             return RedirectToAction("SignIn");

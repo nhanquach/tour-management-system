@@ -13,3 +13,7 @@
 <p>Leave Date: @ViewBag.tourGroup.LeaveDate</p>
 <p>Return Date: @ViewBag.tourGroup.ReturnDate</p>
 <p>Price: $@ViewBag.Tour.TourPrice</p>
+<div>
+    @Html.ActionLink("Show all booked tours", "AllBookedTours", null, new { @class = "btn btn-outline-primary" })
+    @Html.ActionLink("Show all tours", "Index", "Tours", new { @class = "btn btn-outline-dark" })
+</div>

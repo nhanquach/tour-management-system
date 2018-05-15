@@ -10,7 +10,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TourID)
+            ID
         </th>
         <th>
             Name
@@ -36,7 +36,11 @@
             @Html.DisplayFor(modelItem => item.TourDescription)
         </td>
         <td>
-            $@item.TourPrice
+           @{
+            var totalMoney = (double.Parse(item.TourPrice));
+            var Money = totalMoney.ToString("C", new System.Globalization.CultureInfo("en-US"));
+            }
+            @Money
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }, new { @class = "btn btn-outline-success" })

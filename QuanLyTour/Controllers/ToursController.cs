@@ -120,5 +120,10 @@ namespace QuanLyTour.Controllers
             ViewBag.Bill = bill;
             return View();
         }
+
+        public ActionResult AllBookedTours()
+        {
+            return RedirectToAction("Home", "User");
+        }
     }
 }

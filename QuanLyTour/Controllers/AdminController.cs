@@ -87,11 +87,11 @@ namespace QuanLyTour.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddLocations(Array LocationID)
+        public ActionResult AddLocations(Array ID)
         {
-            if (LocationID.Length > 0)
+            if (ID.Length > 0)
             {
-                foreach (var item in LocationID)
+                foreach (var item in ID)
                 {
                     TourDetail tourDetail = new TourDetail
                     {

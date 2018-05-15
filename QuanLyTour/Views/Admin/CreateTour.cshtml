@@ -40,7 +40,7 @@
         <div class="input-group">
             <span class="" id="">Price</span>
         </div>
-        @Html.EditorFor(model => model.TourPrice, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.TourPrice, new { htmlAttributes = new { @class = "form-control", @type="number" } })
     </div>
     <div>
         <p class="has-error">@ViewBag.error</p>
